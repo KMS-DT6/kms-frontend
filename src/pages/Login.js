@@ -27,7 +27,7 @@ function Login() {
                 <a href="/" className="h1"><b>MiOto</b></a>
             </div>
             <div className="card-body">
-                <p className="login-box-msg">Sign in to start your session</p>
+                <p className="login-box-msg">Sign in to booking</p>
                 <form>
                     <div className="input-group mb-3">
                         <input type="text" className="form-control" placeholder="Username" onChange={(e) => setUsername(e.target.value)}/>
