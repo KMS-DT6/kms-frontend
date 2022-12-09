@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import PitchDetail from '../components/FootballPitchesManage/PitchDetail'
-import Header from '../components/Header'
-import Menu from '../components/Menu'
+import PitchDetail from '../../components/SubFootballPitch/ListSubFootballPitch'
+import Header from '../../components/Header'
+import Menu from '../../components/Menu'
 
-function PitchManageDetail() {
+function ListSubFootballPitchPage() {
   return (
-    <PitchManageDetailCSS>
+    <ListSubFootballPitchCSS>
         <div className='tt'>
             <Header />
             <div className="flext">
@@ -16,13 +16,13 @@ function PitchManageDetail() {
                 </div>
             </div>
         </div>
-    </PitchManageDetailCSS>
+    </ListSubFootballPitchCSS>
   )
 }
 
-export default PitchManageDetail
+export default ListSubFootballPitchPage
 
-const PitchManageDetailCSS = styled.div`
+const ListSubFootballPitchCSS = styled.div`
 // background-color : yellow;
 .flext {
   display:flex;

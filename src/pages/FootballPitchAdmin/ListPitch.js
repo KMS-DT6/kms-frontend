@@ -1,28 +1,28 @@
 import React from 'react'
 import styled from 'styled-components'
-import Pitches from '../components/FootballPitchesManage/Pitches'
-import Header from '../components/Header'
-import Menu from '../components/Menu'
+import ListPitch from '../../components/FootballPitchesManage/ListPitch'
+import Header from '../../components/Header'
+import Menu from '../../components/Menu'
 
-function PitchManage() {
+function ListPitchPage() {
   return (
-    <PitchManageCSS>
+    <ListPitchCSS>
         <div className='tt'>
             <Header />
             <div className="flext">
                 <Menu />
                 <div className='dash'>
-                  <Pitches />
+                  <ListPitch />
                 </div>
             </div>
         </div>
-    </PitchManageCSS>
+    </ListPitchCSS>
   )
 }
 
-export default PitchManage
+export default ListPitchPage
 
-const PitchManageCSS = styled.div`
+const ListPitchCSS = styled.div`
 // background-color : yellow;
 .flext {
   display:flex;

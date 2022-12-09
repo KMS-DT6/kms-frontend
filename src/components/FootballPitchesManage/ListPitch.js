@@ -1,69 +1,68 @@
 import React from 'react'
 import styled from 'styled-components'
 
-function Pitches() {
+function ListPitch() {
   return (
-    <PitchesCSS>
-        
-        <div>
-          <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="main-box clearfix">
-                  <div className="table-responsive">
-                    <table className="table user-list">
-                      <thead>
-                        <tr>
-                          <th><span>Tên sân</span></th>
-                          <th><span>Địa chỉ</span></th>
-                          <th className="text-center"><span>Tình trạng</span></th>
-                          <th><span>---</span></th>
-                          <th>&nbsp;</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <img src="https://htsport.vn/wp-content/uploads/2019/12/25-kich-thuoc-san-bong-7-nguoi-2.jpg"/>
-                            <a href="/turf/id" className="user-link">Tên Sân</a>
-							{/* <p>Day la ten sa/n</p> */}
-                            <span className="user-subhead">Admin</span>
-                          </td>
-                          <td style={{ width: '15%' }}>
-                            <p>Nam cao</p>
-                          </td>
-                          <td className="text-center">
-                            <span className="label label-success">Active</span>
-                          </td>
-                          <td>
-                            <a href="#">spencer@tracy</a>
-                          </td>
-                          <td style={{ width: '15%' }}>
-                            <a href="/manage-pitch/1" className="table-link">
-                              <span className="fa-stack">
-                                <i className="fa fa-square fa-stack-2x" />
-                                <i className="fa fa-search fa-stack-1x fa-inverse" />
-                              </span>
-                            </a>
-                            <a href="#" className="table-link">
-                              <span className="fa-stack">
-                                <i className="fa fa-square fa-stack-2x" />
-                                <i className="fa fa-pencil fa-stack-1x fa-inverse" />
-                              </span>
-                            </a>
-                            <a href="#" className="table-link danger">
-                              <span className="fa-stack">
-                                <i className="fa fa-square fa-stack-2x" />
-                                <i className="fa fa-trash-o fa-stack-1x fa-inverse" />
-                              </span>
-                            </a>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  {/* <ul className="pagination pull-right">
+    <ListPitchCSS>
+
+      <div>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+        <div className="container">
+          <table className="table user-list">
+            <thead>
+              <tr>
+                <th><span>Tên sân</span></th>
+                <th><span>Địa chỉ</span></th>
+                <th className="text-center"><span>Tình trạng</span></th>
+                <th>
+                </th>
+                <th>                  
+                  <a href="/pitch-admin-create" class="btn btn-primary">Create</a>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <img src="https://htsport.vn/wp-content/uploads/2019/12/25-kich-thuoc-san-bong-7-nguoi-2.jpg" />
+                  <a href="/turf/id" className="user-link">Tên Sân</a>
+                  {/* <p>Day la ten sa/n</p> */}
+                  <span className="user-subhead">Admin</span>
+                </td>
+                <td style={{ width: '15%' }}>
+                  <p>Nam cao</p>
+                </td>
+                <td className="text-center">
+                  <span className="label label-success">Active</span>
+                </td>
+                <td>
+                  <a href="#">spencer@tracy</a>
+                </td>
+                <td style={{ width: '15%' }}>
+                  <a href="/list-sub-pitch/1" className="table-link">
+                    <span className="fa-stack">
+                      <i className="fa fa-square fa-stack-2x" />
+                      <i className="fa fa-search fa-stack-1x fa-inverse" />
+                    </span>
+                  </a>
+                  <a href="pitch-admin-update/1" className="table-link">
+                    <span className="fa-stack">
+                      <i className="fa fa-square fa-stack-2x" />
+                      <i className="fa fa-pencil fa-stack-1x fa-inverse" />
+                    </span>
+                  </a>
+                  <a href="#" className="table-link danger">
+                    <span className="fa-stack">
+                      <i className="fa fa-square fa-stack-2x" />
+                      <i className="fa fa-trash-o fa-stack-1x fa-inverse" />
+                    </span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        {/* <ul className="pagination pull-right">
                     <li><a href="#"><i className="fa fa-chevron-left" /></a></li>
                     <li><a href="#">1</a></li>
                     <li><a href="#">2</a></li>
@@ -72,23 +71,15 @@ function Pitches() {
                     <li><a href="#">5</a></li>
                     <li><a href="#"><i className="fa fa-chevron-right" /></a></li>
                   </ul> */}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      </div>
 
-        
-    </PitchesCSS>
+    </ListPitchCSS >
   )
 }
 
-export default Pitches
+export default ListPitch
 
-const PitchesCSS = styled.div`
-// margin-left:240px;
-// margin-top:-270px;
-// background-color:red;
+const ListPitchCSS = styled.div`
 
 margin-left: 240px;
 body{margin-top:20px;}

@@ -13,9 +13,13 @@ import PitchPage from "./pages/PitchPage";
 import PitchDetailPage from "./pages/PitchDetailPage";
 import SchedulePage from "./pages/SchedulePage";
 import MyProfilePage from "./pages/MyProfilePage";
-
+import ListPitchPage from './pages/FootballPitchAdmin/ListPitch';
 import AdminPage from "./pages/AdminPage/AdminPage";
-import PitchManageDetailPage from './pages/PitchManageDetail';
+import ListSubFootballPitchPage from './pages/SubFootballPitch/ListSubFootballPitch';
+import UpdatePitchPage from './pages/FootballPitchAdmin/UpdatePitch';
+import CreatePitchPage from './pages/FootballPitchAdmin/CreatePitch';
+
+
 
 
 // import TurfPage from "./pages/TurfPage";
@@ -26,14 +30,16 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/pitch/:id" element={<PitchDetailPage />} />
-        <Route path="/manage-pitch/:id" element={<PitchManageDetailPage />} />
+        <Route path="/list-sub-pitch/:id" element={<ListSubFootballPitchPage />} />
         <Route path="/turf/:id" element={<TurfPage />} />
         <Route path="/pitch" element={<PitchPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/my" element={<MyProfilePage />} />
         <Route path="/schedule" element={<SchedulePage />} />
         <Route path="/admin/*" element={<AdminPage />} />
-        <Route path='/football-pitch-admin' element={<PitchManage/>} />
+        <Route path='/football-pitch-admin' element={<ListPitchPage/>} />
+        <Route path='/pitch-admin-update/:id' element={<UpdatePitchPage/>} />
+        <Route path='/pitch-admin-create' element={<CreatePitchPage/>} />
 
 
         {/* <Route path="/turf/:id" element={<TurfPage />} />
