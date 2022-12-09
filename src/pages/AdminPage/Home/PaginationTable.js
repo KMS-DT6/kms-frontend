@@ -6,28 +6,49 @@ import {
   useFilters,
   useGlobalFilter,
 } from "react-table";
-
+import {
+  CModal,
+  CButton,
+  CModalHeader,
+  CModalBody,
+  CModalTitle,
+  CFormSelect,
+  CForm,
+  CDropdown,
+  CDropdownToggle,
+  CDropdownMenu,
+  CDropdownItem,
+} from "@coreui/react";
 import { Link } from "react-router-dom";
 
 import { COLUMNS } from "./columns";
 
 import axios from "axios";
 import { useState, useEffect } from "react";
-
+import CITY from "../../vn/CITY.json";
+import DISTRICT from "../../vn/DISTRICT.json";
 import { GlobalFilter } from "./GlobalFilter";
 
 export const PaginationTable = () => {
   const columns = useMemo(() => COLUMNS, []);
-  const [listschool, setListschool] = useState([]);
+  const [listPitch, setlistPitch] = useState([]);
   const token = localStorage.getItem("access_token");
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
+  const [footballPitchName, setfootballPitchName] = useState("");
+  const [phoneNumber, setphoneNumber] = useState("");
+  const [address, setaddress] = useState("");
+  const [district, setdistrict] = useState("");
+  const [city, setcity] = useState("");
+  const [roleId, setroleId] = useState(3);
   const [visible, setVisible] = useState(false);
+  const [listcity, setlistcity] = useState([]);
+  const [listdistrict, setlistdistrict] = useState([]);
 
-  const del = async (id) => {
-    const res = await axios.delete(`schools/${id}`);
+  const handleDelete = async (id) => {
+    const res = await axios.delete(`football-pitches/${id}`);
     //console.log(res);
-    setListschool(listschool.filter((item) => item.schoolId !== id));
+    setlistPitch(listPitch.filter((item) => item.footballPitchId !== id));
     //window.location.reload();
     setVisible(true);
   };
@@ -35,14 +56,29 @@ export const PaginationTable = () => {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get("schools");
+        const { data } = await axios.get("football-pitches");
         //console.log({ data });
-        setListschool(data.data.items);
+        setlistPitch(data.data.items);
       } catch (e) {}
     })();
   }, []);
+  useEffect(() => {
+    (async () => {
+      try {
+        setlistcity(CITY);
+        setlistdistrict(DISTRICT);
+      } catch (e) {}
+    })();
+  }, []);
+  const setadd = async (code) => {
+    const c = listcity.find((item) => item.code === code);
+    setcity(c.name);
 
-  const data = useMemo(() => listschool, [listschool]);
+    const d = DISTRICT.filter((item) => item.parent_code === code);
+    setlistdistrict(d);
+  };
+
+  const data = useMemo(() => listPitch, [listPitch]);
   const {
     getTableProps,
     getTableBodyProps,
@@ -77,12 +113,90 @@ export const PaginationTable = () => {
 
   return (
     <>
+      <CModal
+        alignment="center"
+        visible={visible}
+        onClose={() => setVisible(false)}
+      >
+        <CModalHeader>
+          <CModalTitle>Create FootballPitch</CModalTitle>
+        </CModalHeader>
+        <CModalBody>
+          <table className="table">
+            <tr>
+              <td>
+                <b>FootballPitchName</b>
+              </td>
+              <td>
+                <input type="text" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>Image</b>
+              </td>
+              <td>
+                <input type="text" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>Phone</b>
+              </td>
+              <td>
+                <input type="text" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>Address</b>
+              </td>
+              <td>
+                <input type="text" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>District</b>
+              </td>
+              <td>
+                <CFormSelect
+                  value={district}
+                  onChange={(e) => setdistrict(e.target.value)}
+                >
+                  {listdistrict.map((item) => (
+                    <option value={item.name} label={item.name}></option>
+                  ))}
+                </CFormSelect>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>City</b>
+              </td>
+              <td>
+                <CFormSelect
+                  value={listcity.find((item) => item.name === city)?.code}
+                  onChange={(e) => setadd(e.target.value)}
+                >
+                  {listcity.map((item) => (
+                    <option value={item.code} label={item.name}></option>
+                  ))}
+                </CFormSelect>
+              </td>
+            </tr>
+          </table>
+          <div className="mt-5 text-center">
+            <button className="btn btn-primary ">Create</button>
+          </div>
+        </CModalBody>
+      </CModal>
       <div>
         <div className="table-title mt-3">
           <div className="row">
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
               <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
-              <Link to="create">
+              <Link onClick={(e) => setVisible(true)}>
                 <button className="btn btn-primary" type="button">
                   Create
                 </button>
@@ -126,7 +240,7 @@ export const PaginationTable = () => {
                   })}
                   <td>
                     <Link
-                      to={`schooldetail/${row.original.schoolId}`}
+                      to={`/${row.original.schoolId}`}
                       className="edit"
                       title="Sửa"
                       cshools-toggle="tooltip"
@@ -134,7 +248,7 @@ export const PaginationTable = () => {
                       <i className="material-icons">&#xE254;</i>
                     </Link>
                     <Link
-                      onClick={() => del(row.original.schoolId)}
+                      onClick={() => handleDelete(row.original.schoolId)}
                       className="delete"
                       title="Xóa"
                       cshools-toggle="tooltip"
