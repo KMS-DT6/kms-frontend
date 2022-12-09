@@ -2,7 +2,7 @@ import "./App.css";
 
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Login from "./pages/Login";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/HomePage"; 
 import Menu from "./components/Menu";
 // import Dashboard from './components/Dashboard';
 import Header from "./components/Header";
