@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import {BiCar, BiLogOut} from 'react-icons/bi';
-import {BsFillCheckSquareFill} from 'react-icons/bs'
-import {RiAdvertisementFill} from 'react-icons/ri'
-import {AiOutlineUser} from 'react-icons/ai'
-import styled from 'styled-components';
+import React, { Component } from "react";
+import { BiCar, BiLogOut } from "react-icons/bi";
+import { BsFillCheckSquareFill } from "react-icons/bs";
+import { RiAdvertisementFill } from "react-icons/ri";
+import { AiOutlineUser } from "react-icons/ai";
+import styled from "styled-components";
 
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 // import { useNavigate } from 'react-router-dom';
 
 function Menu(){
@@ -30,10 +30,10 @@ function Menu(){
         </MenuCSS>
     )
 }
-export default Menu
+export default Menu;
 
 const MenuCSS = styled.div`
-    width: 240px;
-    height: 100%;
-    // background-color:green;
-`
+  width: 240px;
+  height: 100%;
+  // background-color:green;
+`;

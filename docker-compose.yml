@@ -1,0 +1,11 @@
+version: '3'
+services:
+  react-app:
+    container_name: kms-frontend
+    build:
+     context: .
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    ports:
+      - 3000:3000

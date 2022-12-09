@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
@@ -64,6 +65,7 @@ const changePass = async () => {
 
   return (
     <MyProfileCSS>
+
           <div onLoad={fetchD}>
               <div className="container bootstrap snippets bootdey">
                   <h1 className="text-primary">My Profile</h1>
@@ -139,16 +141,16 @@ const changePass = async () => {
                               <button type="button" className="btn btn-success btn-block" onClick={changePass}>Change password</button>
                           </form>
                       </div>
-                  </div>
-              </div>
-              <hr />
-          </div>
 
+          </div>
+        </div>
+        <hr />
+      </div>
     </MyProfileCSS>
-  )
+  );
 }
 
-export default MyProfile
+export default MyProfile;
 
 const MyProfileCSS = styled.div`
 input {
@@ -161,19 +163,22 @@ margin-left: 240px;
 body{margin-top:20px;}
 
 .nameLabel {
-    display: flex;
-}
 
-.nameLabel .fn{
-    width :40%;
-}
-.nameLabel .ln{
-    width :40%;
-}
-				                
-body{margin-top:20px;}
-.avatar{
-width:200px;
-height:200px;
-}				              
-`
+    display: flex;
+  }
+
+  .nameLabel .fn {
+    width: 40%;
+  }
+  .nameLabel .ln {
+    width: 40%;
+  }
+
+  body {
+    margin-top: 20px;
+  }
+  .avatar {
+    width: 200px;
+    height: 200px;
+  }
+`;
