@@ -25,7 +25,9 @@ jobs:
         run: npm ci
       
       - name: Build
-        run: npm run build
+        run: npm run test --if-present
+        env:
+          CI: false
         
       - name: Save version
         id: version
