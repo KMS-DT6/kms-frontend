@@ -19,9 +19,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/schedule" element={<HomePage />} />
         <Route path="/pitch/:id" element={<PitchDetailPage />} />
         <Route path="/turf/:id" element={<TurfPage />} />
+        <Route path="/" element={<PitchPage />} />
         <Route path="/pitch" element={<PitchPage />} />
         <Route path="/login" element={<Login />} />
         <Route path='/my' element={<MyProfilePage />} />

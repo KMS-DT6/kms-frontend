@@ -8,6 +8,7 @@ function Schedule() {
         <div>
           <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
           <div className="container">
+		  <span className='spanHe'>Các sân đã đặt :</span>
             <div className="row">
               <div className="col-lg-12">
                 <div className="main-box clearfix">
@@ -69,6 +70,13 @@ const ScheduleCSS = styled.div`
 // margin-left:240px;
 // margin-top:-270px;
 // background-color:red;
+
+.spanHe {
+	text-align: center;
+	font-size: xxx-large;
+	color: #0d6efd;
+	margin-bottom:10px;
+  }
 
 margin-left: 240px;
 body{margin-top:20px;}

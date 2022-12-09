@@ -1,14 +1,32 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 
 function Pitches() {
+  const [pitches, setPitches] = useState([])
+
+  useEffect(() => {
+    fetchData();
+}, [])
+
+const fetchData = async () => {
+    const url = 'http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/football-pitches?footballPitchName=&district=&city='
+    const response = await axios.get(url,{ headers: {"Authorization" : `Bearer ${sessionStorage.getItem('token')}`}})
+    setPitches(response?.data?.data?.items)
+    console.log(sessionStorage.getItem('token'))
+
+}
+console.log(pitches)
   return (
     <PitchesCSS>
         
         <div>
           <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
           <div className="container">
+          <span className='spanHe'>Danh sách sân bóng :</span>
             <div className="row">
+              
               <div className="col-lg-12">
                 <div className="main-box clearfix">
                   <div className="table-responsive">
@@ -18,16 +36,15 @@ function Pitches() {
                           <th><span>Tên sân</span></th>
                           <th><span>Địa chỉ</span></th>
                           <th className="text-center"><span>Tình trạng</span></th>
-                          <th><span>---</span></th>
+                          <th><span>Liên hệ</span></th>
                           <th>&nbsp;</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
+                        {/* <tr>
                           <td>
                             <img src="https://htsport.vn/wp-content/uploads/2019/12/25-kich-thuoc-san-bong-7-nguoi-2.jpg"/>
-                            <a href="/turf/id" className="user-link">Tên Sân</a>
-							{/* <p>Day la ten sa/n</p> */}
+                            <a href="/pitch/1" className="user-link">Tên Sân nam cao</a>
                             <span className="user-subhead">Admin</span>
                           </td>
                           <td style={{ width: '15%' }}>
@@ -46,32 +63,64 @@ function Pitches() {
                                 <i className="fa fa-search fa-stack-1x fa-inverse" />
                               </span>
                             </a>
-                            {/* <a href="#" className="table-link">
-                              <span className="fa-stack">
-                                <i className="fa fa-square fa-stack-2x" />
-                                <i className="fa fa-pencil fa-stack-1x fa-inverse" />
-                              </span>
-                            </a>
-                            <a href="#" className="table-link danger">
-                              <span className="fa-stack">
-                                <i className="fa fa-square fa-stack-2x" />
-                                <i className="fa fa-trash-o fa-stack-1x fa-inverse" />
-                              </span>
-                            </a> */}
                           </td>
-                        </tr>
+                        </tr> */}
+                        {
+                                        pitches?.map((pitch,index) => (
+                                        <tr key={index}>
+                                          <td>
+                                              <img src={pitch?.image}/>
+                                              <Link to={`/pitch/${pitch?.footballPitchId}`} className="user-link">{pitch?.footballPitchName}</Link>
+                                          </td>
+                                          <td>
+                                              {pitch?.address?.address}
+                                        </td>
+                                        <td style={{ width: '10%' }}>Còn</td>
+                                                {/* {(() => {
+                                                    switch (car?.status.name) {
+                                                        case 'Đang hoạt động':
+                                                            return (
+                                                                <td className="text-center">
+                                                                    <span className="label label-success">{car?.status.name}</span>
+                                                                </td>
+                                                            )
+                                                        case 'Đã bị từ chối':
+                                                            return (
+                                                                <td className="text-center">
+                                                                    <span className="label label-denied">{car?.status.name}</span>
+                                                                </td>
+                                                            )
+                                                        case 'Đang chờ duyệt':
+                                                            return (
+                                                                <td className="text-center">
+                                                                    <span className="label label-warning">{car?.status.name}</span>
+                                                                </td>
+                                                            )
+                                                        default:
+                                                            return (
+                                                                <td className="text-center">
+                                                                    <span className="label label-active">{car?.status.name}</span>
+                                                                </td>
+                                                            )
+                                                    }
+                                                })()} */}
+                                                <td>
+                                                {pitch?.phoneNumber}
+                                                </td>
+                                          <td style={{ width: '20%' }}>
+                                              <a href={`/pitch/${pitch?.footballPitchId}`} className="table-link">
+                                                  <span className="fa-stack">
+                                                      <i className="fa fa-square fa-stack-2x" />
+                                                      <i className="fa fa-search fa-stack-1x fa-inverse" />
+                                                  </span>
+                                              </a>
+                                          </td>
+                                      </tr>
+                                        ))
+                                      }
                       </tbody>
                     </table>
                   </div>
-                  {/* <ul className="pagination pull-right">
-                    <li><a href="#"><i className="fa fa-chevron-left" /></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#"><i className="fa fa-chevron-right" /></a></li>
-                  </ul> */}
                 </div>
               </div>
             </div>
@@ -89,6 +138,13 @@ const PitchesCSS = styled.div`
 // margin-left:240px;
 // margin-top:-270px;
 // background-color:red;
+
+.spanHe {
+  text-align: center;
+  font-size: xxx-large;
+  color: #0d6efd;
+  margin-bottom:10px;
+}
 
 margin-left: 240px;
 body{margin-top:20px;}

@@ -8,6 +8,8 @@ function PitchDetail() {
         <div>
           <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
           <div className="container">
+            
+          <span className='spanHe'>Các sân con thuộc sân abc</span>
             <div className="row">
               <div className="col-lg-12">
                 <div className="main-box clearfix">
@@ -60,7 +62,7 @@ function PitchDetail() {
                             <span className="label label-success">Còn trống</span>
                           </td>
                           <td>
-                            <a href="#">alo</a>
+                            <a href="#">blo</a>
                           </td>
                           <td style={{ width: '10%' }}>
                             <a href="/turf/id" className="table-link">
@@ -91,7 +93,12 @@ const PitchDetailCSS = styled.div`
 // margin-left:240px;
 // margin-top:-270px;
 // background-color:red;
-
+.spanHe {
+  text-align: center;
+  font-size: xxx-large;
+  color: #0d6efd;
+  margin-bottom:10px;
+}
 margin-left: 240px;
 body{margin-top:20px;}
 
