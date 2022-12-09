@@ -35,5 +35,6 @@ export default Menu;
 const MenuCSS = styled.div`
   width: 240px;
   height: 100%;
-  // background-color:green;
+//   background-color:white;
+//   text-color:black;
 `;

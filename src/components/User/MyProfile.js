@@ -67,8 +67,9 @@ const changePass = async () => {
     <MyProfileCSS>
 
           <div onLoad={fetchD}>
+          <h1 className="text-primary">My Profile</h1>
               <div className="container bootstrap snippets bootdey">
-                  <h1 className="text-primary">My Profile</h1>
+                  
                   <hr />
                   <div className="row">
                       {/* left column */}

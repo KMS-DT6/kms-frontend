@@ -24,9 +24,9 @@ console.log(pitches)
         <div>
           <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
           <div className="container">
-          <span className='spanHe'>Danh sách sân bóng :</span>
+          
             <div className="row">
-              
+            <span className='spanHe'>Danh sách sân bóng :</span>
               <div className="col-lg-12">
                 <div className="main-box clearfix">
                   <div className="table-responsive">
@@ -141,8 +141,6 @@ const PitchesCSS = styled.div`
   body {
     margin-top: 20px;
   }
-
-<<<<<<< HEAD
 .spanHe {
   text-align: center;
   font-size: xxx-large;
@@ -154,9 +152,6 @@ margin-left: 240px;
 body{margin-top:20px;}
 
 .search {
-=======
-  .search {
->>>>>>> 9810efc2e569244aa596f95fa7b5331cb80a4566
     display: flex;
   }
   .label {

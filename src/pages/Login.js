@@ -16,6 +16,7 @@ function Login() {
             "username": username,
             "password": password
         }
+        console.log(user)
         const response = await axios.post('http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/login', user)
         sessionStorage.setItem('token', response?.data?.access_token)
         console.log(sessionStorage.getItem('token'))
