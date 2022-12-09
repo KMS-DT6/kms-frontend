@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Background } from "../assets/images/Login";
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Login() {
     const [username, setUsername] = useState("");
@@ -12,14 +13,13 @@ function Login() {
     async function handleLogin() {
         
         const user = {
-            username: username,
-            password: password
+            "username": username,
+            "password": password
         }
-        // let token = await loginAdmin(user)
-        // console.log('get',token.accessToken)
-        // // localStorage.setItem('token' ,token)
-        // sessionStorage.setItem('token', token.accessToken)
-        // window.location.reload()
+        console.log(user)
+        const response = await axios.post('http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/login', user)
+        sessionStorage.setItem('token', response?.data?.access_token)
+        console.log(sessionStorage.getItem('token'))
         navigate("/")
     }
   return (
