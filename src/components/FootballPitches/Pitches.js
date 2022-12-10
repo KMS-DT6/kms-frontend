@@ -1,77 +1,131 @@
-import React from "react";
-import styled from "styled-components";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
+import styled from 'styled-components'
 
 function Pitches() {
+  const [pitches, setPitches] = useState([])
+
+  useEffect(() => {
+    fetchData();
+}, [])
+
+const fetchData = async () => {
+    const url = 'http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/football-pitches?footballPitchName=&district=&city='
+    const response = await axios.get(url,{ headers: {"Authorization" : `Bearer ${sessionStorage.getItem('token')}`}})
+    setPitches(response?.data?.data?.items)
+    console.log(sessionStorage.getItem('token'))
+
+}
+console.log(pitches)
   return (
     <PitchesCSS>
-      <div>
-        <link
-          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-          rel="stylesheet"
-        />
-        <div className="container">
-          <table className="table user-list">
-            <thead>
-              <tr>
-                <th>
-                  <span>Tên sân</span>
-                </th>
-                <th>
-                  <span>Địa chỉ</span>
-                </th>
-                <th className="text-center">
-                  <span>Tình trạng</span>
-                </th>
-                <th>
-                  <span>---</span>
-                </th>
-                <th>&nbsp;</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <img src="https://htsport.vn/wp-content/uploads/2019/12/25-kich-thuoc-san-bong-7-nguoi-2.jpg" />
-                  <a href="/turf/id" className="user-link">
-                    Tên Sân
-                  </a>
-                  {/* <p>Day la ten sa/n</p> */}
-                  <span className="user-subhead">Admin</span>
-                </td>
-                <td style={{ width: "15%" }}>
-                  <p>Nam cao</p>
-                </td>
-                <td className="text-center">
-                  <span className="label label-success">Active</span>
-                </td>
-                <td>
-                  <a href="#">spencer@tracy</a>
-                </td>
-                <td style={{ width: "10%" }}>
-                  <a href="/pitch/1" className="table-link">
-                    <span className="fa-stack">
-                      <i className="fa fa-square fa-stack-2x" />
-                      <i className="fa fa-search fa-stack-1x fa-inverse" />
-                    </span>
-                  </a>
-                  {/* <a href="#" className="table-link">
+        
+        <div>
+          <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+          <div className="container">
+          
+            <div className="row">
+            <span className='spanHe'>Danh sách sân bóng :</span>
+              <div className="col-lg-12">
+                <div className="main-box clearfix">
+                  <div className="table-responsive">
+                    <table className="table user-list">
+                      <thead>
+                        <tr>
+                          <th><span>Tên sân</span></th>
+                          <th><span>Địa chỉ</span></th>
+                          <th className="text-center"><span>Tình trạng</span></th>
+                          <th><span>Liên hệ</span></th>
+                          <th>&nbsp;</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {/* <tr>
+                          <td>
+                            <img src="https://htsport.vn/wp-content/uploads/2019/12/25-kich-thuoc-san-bong-7-nguoi-2.jpg"/>
+                            <a href="/pitch/1" className="user-link">Tên Sân nam cao</a>
+                            <span className="user-subhead">Admin</span>
+                          </td>
+                          <td style={{ width: '15%' }}>
+                            <p>Nam cao</p>
+                          </td>
+                          <td className="text-center">
+                            <span className="label label-success">Active</span>
+                          </td>
+                          <td>
+                            <a href="#">spencer@tracy</a>
+                          </td>
+                          <td style={{ width: '10%' }}>
+                            <a href="/pitch/1" className="table-link">
                               <span className="fa-stack">
                                 <i className="fa fa-square fa-stack-2x" />
-                                <i className="fa fa-pencil fa-stack-1x fa-inverse" />
+                                <i className="fa fa-search fa-stack-1x fa-inverse" />
                               </span>
                             </a>
-                            <a href="#" className="table-link danger">
-                              <span className="fa-stack">
-                                <i className="fa fa-square fa-stack-2x" />
-                                <i className="fa fa-trash-o fa-stack-1x fa-inverse" />
-                              </span>
-                            </a> */}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+                          </td>
+                        </tr> */}
+                        {
+                                        pitches?.map((pitch,index) => (
+                                        <tr key={index}>
+                                          <td>
+                                              <img src={pitch?.image}/>
+                                              <Link to={`/pitch/${pitch?.footballPitchId}`} className="user-link">{pitch?.footballPitchName}</Link>
+                                          </td>
+                                          <td>
+                                              {pitch?.address?.address}
+                                        </td>
+                                        <td style={{ width: '10%' }}>Còn</td>
+                                                {/* {(() => {
+                                                    switch (car?.status.name) {
+                                                        case 'Đang hoạt động':
+                                                            return (
+                                                                <td className="text-center">
+                                                                    <span className="label label-success">{car?.status.name}</span>
+                                                                </td>
+                                                            )
+                                                        case 'Đã bị từ chối':
+                                                            return (
+                                                                <td className="text-center">
+                                                                    <span className="label label-denied">{car?.status.name}</span>
+                                                                </td>
+                                                            )
+                                                        case 'Đang chờ duyệt':
+                                                            return (
+                                                                <td className="text-center">
+                                                                    <span className="label label-warning">{car?.status.name}</span>
+                                                                </td>
+                                                            )
+                                                        default:
+                                                            return (
+                                                                <td className="text-center">
+                                                                    <span className="label label-active">{car?.status.name}</span>
+                                                                </td>
+                                                            )
+                                                    }
+                                                })()} */}
+                                                <td>
+                                                {pitch?.phoneNumber}
+                                                </td>
+                                          <td style={{ width: '20%' }}>
+                                              <a href={`/pitch/${pitch?.footballPitchId}`} className="table-link">
+                                                  <span className="fa-stack">
+                                                      <i className="fa fa-square fa-stack-2x" />
+                                                      <i className="fa fa-search fa-stack-1x fa-inverse" />
+                                                  </span>
+                                              </a>
+                                          </td>
+                                      </tr>
+                                        ))
+                                      }
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
     </PitchesCSS>
   );
 }
@@ -87,8 +141,17 @@ const PitchesCSS = styled.div`
   body {
     margin-top: 20px;
   }
+.spanHe {
+  text-align: center;
+  font-size: xxx-large;
+  color: #0d6efd;
+  margin-bottom:10px;
+}
 
-  .search {
+margin-left: 240px;
+body{margin-top:20px;}
+
+.search {
     display: flex;
   }
   .label {

@@ -1,6 +1,7 @@
 import Profile from "./Profile";
 import ChangePW from "./password";
 import Home from "./Home";
+import FootballPitchDetail from "./FootballPitchDetail";
 
 const routes = [
   { path: "/profile", exact: true, name: "" },
@@ -18,6 +19,21 @@ const routes = [
     path: "/home",
     name: "Trang chủ",
     element: Home,
+  },
+  {
+    path: "/admin/profile",
+    name: "Profile",
+    element: Profile,
+  },
+  {
+    path: "/admin/pw",
+    name: "PassWord",
+    element: ChangePW,
+  },
+  {
+    path: "/footballpitchdetail/:id",
+    name: "FootballPitchDetail",
+    element: FootballPitchDetail,
   },
 ];
 

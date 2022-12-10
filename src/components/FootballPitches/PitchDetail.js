@@ -4,88 +4,84 @@ import styled from "styled-components";
 function PitchDetail() {
   return (
     <PitchDetailCSS>
-      <div>
-        <link
-          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-          rel="stylesheet"
-        />
-
-        <table className="table user-list">
-          <thead>
-            <tr>
-              <th>
-                <span>Tên sân</span>
-              </th>
-              <th>
-                <span>Loại</span>
-              </th>
-              <th className="text-center">
-                <span>Tình trạng</span>
-              </th>
-              <th>
-                <span>LH</span>
-              </th>
-              <th>&nbsp;</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <img
-                  src="https://thegioiconhantao.com.vn/wp-content/uploads/2016/11/phat-den.png"
-                  alt
-                />
-                <a href="" className="user-link">
-                  Sân A1
-                </a>
-                <span className="user-subhead">Admin</span>
-              </td>
-              <td>Sân 5</td>
-              <td className="text-center">
-                <span className="label label-success">Còn trống</span>
-              </td>
-              <td>
-                <a href="#">spencer@tracy</a>
-              </td>
-              <td style={{ width: "10%" }}>
-                <a href="#" className="table-link">
-                  <span className="fa-stack">
-                    <i className="fa fa-square fa-stack-2x" />
-                    <i className="fa fa-plus fa-stack-1x fa-inverse" />
-                  </span>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <img
-                  src="https://giaydabongtot.com/wp-content/uploads/2020/04/Kich-thuoc-dien-tich-san-bong-da-7-nguoi-tieu-chuan.jpg"
-                  alt
-                />
-                <a href="" className="user-link">
-                  Sân A2
-                </a>
-                <span className="user-subhead">Admin</span>
-              </td>
-              <td>Sân 7</td>
-              <td className="text-center">
-                <span className="label label-success">Còn trống</span>
-              </td>
-              <td>
-                <a href="#">alo</a>
-              </td>
-              <td style={{ width: "10%" }}>
-                <a href="/turf/id" className="table-link">
-                  <span className="fa-stack">
-                    <i className="fa fa-square fa-stack-2x" />
-                    <i className="fa fa-plus fa-stack-1x fa-inverse" />
-                  </span>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        
+        <div>
+          <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+          <div className="container">
+            
+          
+            <div className="row">
+            <span className='spanHe'>Các sân con thuộc sân abc</span>
+              <div className="col-lg-12">
+                <div className="main-box clearfix">
+                  <div className="table-responsive">
+                    <table className="table user-list">
+                      <thead>
+                        <tr>
+                          <th><span>Tên sân</span></th>
+                          <th><span>Loại</span></th>
+                          <th className="text-center"><span>Tình trạng</span></th>
+                          <th><span>LH</span></th>
+                          <th>&nbsp;</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <img src="https://thegioiconhantao.com.vn/wp-content/uploads/2016/11/phat-den.png" alt />
+                            <a href="" className="user-link">Sân A1</a>
+                            <span className="user-subhead">Admin</span>
+                          </td>
+                          <td>
+                            Sân 5
+                          </td>
+                          <td className="text-center">
+                            <span className="label label-success">Còn trống</span>
+                          </td>
+                          <td>
+                            <a href="#">spencer@tracy</a>
+                          </td>
+                          <td style={{ width: '10%' }}>
+                            <a href="#" className="table-link">
+                              <span className="fa-stack">
+                                <i className="fa fa-square fa-stack-2x" />
+                                <i className="fa fa-plus fa-stack-1x fa-inverse" />
+                              </span>
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <img src="https://giaydabongtot.com/wp-content/uploads/2020/04/Kich-thuoc-dien-tich-san-bong-da-7-nguoi-tieu-chuan.jpg" alt />
+                            <a href="" className="user-link">Sân A2</a>
+                            <span className="user-subhead">Admin</span>
+                          </td>
+                          <td>
+                            Sân 7
+                          </td>
+                          <td className="text-center">
+                            <span className="label label-success">Còn trống</span>
+                          </td>
+                          <td>
+                            <a href="#">blo</a>
+                          </td>
+                          <td style={{ width: '10%' }}>
+                            <a href="/turf/id" className="table-link">
+                              <span className="fa-stack">
+                                <i className="fa fa-square fa-stack-2x" />
+                                <i className="fa fa-plus fa-stack-1x fa-inverse" />
+                              </span>
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     </PitchDetailCSS>
   );
 }
@@ -93,15 +89,17 @@ function PitchDetail() {
 export default PitchDetail;
 
 const PitchDetailCSS = styled.div`
-  // margin-left:240px;
-  // margin-top:-270px;
-  // background-color:red;
-
-  margin-left: 280px;
-  width: 80%;
-  body {
-    margin-top: 20px;
-  }
+// margin-left:240px;
+// margin-top:-270px;
+// background-color:red;
+.spanHe {
+  text-align: center;
+  font-size: xxx-large;
+  color: #0d6efd;
+  margin-bottom:10px;
+}
+margin-left: 240px;
+body{margin-top:20px;}
 
   .search {
     display: flex;
