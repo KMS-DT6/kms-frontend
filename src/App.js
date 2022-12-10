@@ -28,7 +28,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/schedule" element={<HomePage />} />
+        //<Route path="/schedule" element={<HomePage />} />
         <Route path="/pitch/:id" element={<PitchDetailPage />} />
         <Route path="/list-sub-pitch/:id" element={<ListSubFootballPitchPage />} />
         <Route path="/turf/:id" element={<TurfPage />} />
