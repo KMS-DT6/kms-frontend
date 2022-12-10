@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  AppContent,
-  AppSidebar,
-  AppHeader,
-} from "../../components/Admin/index";
+import { AppContent, AppHeader } from "../../components/Admin/index";
 
 const AdminPage = () => {
   return (
