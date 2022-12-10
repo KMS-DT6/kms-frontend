@@ -18,6 +18,8 @@ import AdminPage from "./pages/AdminPage/AdminPage";
 import ListSubFootballPitchPage from './pages/SubFootballPitch/ListSubFootballPitch';
 import UpdatePitchPage from './pages/FootballPitchAdmin/UpdatePitch';
 import CreatePitchPage from './pages/FootballPitchAdmin/CreatePitch';
+import RegisterPage from './pages/Register/register';
+
 
 
 
@@ -41,6 +43,8 @@ function App() {
         <Route path='/football-pitch-admin' element={<ListPitchPage/>} />
         <Route path='/pitch-admin-update/:id' element={<UpdatePitchPage/>} />
         <Route path='/pitch-admin-create' element={<CreatePitchPage/>} />
+        <Route path='/register' element={<RegisterPage/>} />
+
 
 
         {/* <Route path="/turf/:id" element={<TurfPage />} />
