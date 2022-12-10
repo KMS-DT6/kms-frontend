@@ -126,6 +126,8 @@ console.log(pitches)
             </div>
           </div>
           </div>
+
+          
     </PitchesCSS>
   );
 }

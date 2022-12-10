@@ -5,58 +5,63 @@ function Schedule() {
   return (
     <ScheduleCSS>
         <div>
-          <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
-          <div className="container">
-		  <span className='spanHe'>Các sân đã đặt :</span>
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="main-box clearfix">
-                  <div className="table-responsive">
-                    <table className="table user-list">
-                      <thead>
-                        <tr>
-                          <th><span>Tên sân</span></th>
-                          <th><span>Địa chỉ</span></th>
-                          <th className="text-center"><span>Thời gian</span></th>
-                          <th><span>Thuộc sân</span></th>
-                          <th>&nbsp;</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <img src="https://htsport.vn/wp-content/uploads/2019/12/25-kich-thuoc-san-bong-7-nguoi-2.jpg"/>
-                            <a href="/turf/id" className="user-link">Sân A1</a>
-							{/* <p>Day la ten sa/n</p> */}
-                            <span className="user-subhead">Admin</span>
-                          </td>
-                          <td style={{ width: '15%' }}>
-                            <p>Nam cao</p>
-                          </td>
-                          <td className="text-center">
-                            {/* <span className="label label-success">Active</span> */}
-                            18h - 19h
-                          </td>
-                          <td>
-                            <a href="#">Sân nam cao</a>
-                          </td>
-                          <td style={{ width: '10%' }}>
-                            <a href="/pitch/1" className="table-link">
-                              <span className="fa-stack">
-                                <i className="fa fa-square fa-stack-2x" />
-                                <i className="fa fa-search fa-stack-1x fa-inverse" />
-                              </span>
-                            </a>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+        <div className="container">
+          <table className="table user-list">
+            <thead>
+              <tr>
+                <th><span>Tên sân</span></th>
+                <th><span>Địa chỉ</span></th>
+                <th className="text-center"><span>Tình trạng</span></th>
+                <th>
+                </th>
+                <th>                  
+                &nbsp;
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <img src="https://htsport.vn/wp-content/uploads/2019/12/25-kich-thuoc-san-bong-7-nguoi-2.jpg" />
+                  <a href="/turf/id" className="user-link">Tên Sân</a>
+                  {/* <p>Day la ten sa/n</p> */}
+                  <span className="user-subhead">Admin</span>
+                </td>
+                <td style={{ width: '15%' }}>
+                  <p>Nam cao</p>
+                </td>
+                <td className="text-center">
+                  <span className="label label-success">Active</span>
+                </td>
+                <td>
+                  <a href="#">spencer@tracy</a>
+                </td>
+                <td style={{ width: '15%' }}>
+                  <a href="/list-sub-pitch/1" className="table-link">
+                    <span className="fa-stack">
+                      <i className="fa fa-square fa-stack-2x" />
+                      <i className="fa fa-search fa-stack-1x fa-inverse" />
+                    </span>
+                  </a>
+                  <a href="pitch-admin-update/1" className="table-link">
+                    <span className="fa-stack">
+                      <i className="fa fa-square fa-stack-2x" />
+                      <i className="fa fa-pencil fa-stack-1x fa-inverse" />
+                    </span>
+                  </a>
+                  <a href="#" className="table-link danger">
+                    <span className="fa-stack">
+                      <i className="fa fa-square fa-stack-2x" />
+                      <i className="fa fa-trash-o fa-stack-1x fa-inverse" />
+                    </span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      </div>
     </ScheduleCSS>
   );
 }
