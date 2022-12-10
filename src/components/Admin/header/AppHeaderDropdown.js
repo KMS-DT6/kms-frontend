@@ -26,7 +26,7 @@ import {
 import CIcon from "@coreui/icons-react";
 
 const logout = () => {
-  localStorage.removeItem("access_token");
+  sessionStorage.removeItem("token");
 };
 
 const AppHeaderDropdown = () => {
@@ -59,7 +59,7 @@ const AppHeaderDropdown = () => {
         </Link>
 
         <CDropdownDivider />
-        <CDropdownItem onClick={logout} href="/">
+        <CDropdownItem onClick={logout} href="/login">
           <CIcon icon={cilAccountLogout} className="me-2" />
           Logout
         </CDropdownItem>

@@ -32,7 +32,7 @@ import { GlobalFilter } from "./GlobalFilter";
 export const PaginationTable = () => {
   const columns = useMemo(() => COLUMNS, []);
   const [listPitch, setlistPitch] = useState([]);
-  const token = localStorage.getItem("access_token");
+  const token = sessionStorage.getItem("token");
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
   const [footballPitchName, setfootballPitchName] = useState("");
@@ -56,9 +56,12 @@ export const PaginationTable = () => {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get("football-pitches");
-        //console.log({ data });
+        const { data } = await axios.get(
+          "http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/football-pitches"
+        );
+        // console.log({ data });
         setlistPitch(data.data.items);
+        console.log(data.data.items);
       } catch (e) {}
     })();
   }, []);
@@ -240,7 +243,7 @@ export const PaginationTable = () => {
                   })}
                   <td>
                     <Link
-                      to={`/${row.original.schoolId}`}
+                      to={`/admin/footballpitchdetail/${row.original.footballPitchId}`}
                       className="edit"
                       title="Sửa"
                       cshools-toggle="tooltip"
@@ -248,7 +251,7 @@ export const PaginationTable = () => {
                       <i className="material-icons">&#xE254;</i>
                     </Link>
                     <Link
-                      onClick={() => handleDelete(row.original.schoolId)}
+                      onClick={() => handleDelete(row.original.footballPitchId)}
                       className="delete"
                       title="Xóa"
                       cshools-toggle="tooltip"
