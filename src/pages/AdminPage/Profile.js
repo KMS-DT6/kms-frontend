@@ -7,7 +7,7 @@ import CITY from "../vn/CITY.json";
 import DISTRICT from "../vn/DISTRICT.json";
 
 const Profile = () => {
-  const token = localStorage.getItem("access_token");
+  const token = sessionStorage.getItem("token");
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   const [profile, setProfile] = useState({});
   const [firstName, setfirstName] = useState("");
@@ -26,16 +26,17 @@ const Profile = () => {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get("my-account");
-        //console.log({ data });
+        const { data } = await axios.get(
+          "http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/my-account"
+        );
+        console.log({ data });
         setProfile(data.data.user);
         setfirstName(data.data.user.firstName);
         setlastName(data.data.user.lastName);
-        setphone(data.data.user.phone);
-
-        setaddress(data.data.user.address);
-        setdistrict(data.data.user.district);
-        setcity(data.data.user.city);
+        setphone(data.data.user.phoneNumber);
+        setaddress(data.data.user.address.address);
+        setdistrict(data.data.user.address.district);
+        setcity(data.data.user.address.city);
       } catch (e) {}
     })();
   }, []);
