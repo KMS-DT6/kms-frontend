@@ -31,7 +31,7 @@ const routes = [
     element: ChangePW,
   },
   {
-    path: "/footballpitchdetail",
+    path: "/footballpitchdetail/:id",
     name: "FootballPitchDetail",
     element: FootballPitchDetail,
   },

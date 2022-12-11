@@ -3,18 +3,40 @@ import { useState, useEffect } from "react";
 import CITY from "../vn/CITY.json";
 import DISTRICT from "../vn/DISTRICT.json";
 import { CFormSelect } from "@coreui/react";
+import { useParams } from "react-router";
+import { useNavigate } from "react-router";
 
 const FootballPitchDetail = () => {
-  const token = localStorage.getItem("access_token");
+  const token = sessionStorage.getItem("token");
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   const [listcity, setlistcity] = useState([]);
   const [listdistrict, setlistdistrict] = useState([]);
   const [footballPitchName, setfootballPitchName] = useState("");
   const [phoneNumber, setphoneNumber] = useState("");
   const [address, setaddress] = useState("");
+  const [image, setimage] = useState("");
   const [district, setdistrict] = useState("");
   const [city, setcity] = useState("");
   const [roleId, setroleId] = useState(3);
+
+  const navigate = useNavigate();
+  const { id } = useParams();
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await axios.get(
+          `http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/football-pitches/${id}`
+        );
+        console.log({ data });
+        setfootballPitchName(data.data.footballPitchName);
+        setimage(data.data.image);
+        setphoneNumber(data.data.phoneNumber);
+        setaddress(data.data.address.address);
+        setdistrict(data.data.address.district);
+        setcity(data.data.address.city);
+      } catch (e) {}
+    })();
+  }, []);
   useEffect(() => {
     (async () => {
       try {
@@ -46,7 +68,7 @@ const FootballPitchDetail = () => {
                     <b>FootballPitchName</b>
                   </td>
                   <td>
-                    <input type="text" />
+                    <input type="text" value={footballPitchName} />
                   </td>
                 </tr>
                 <tr>
@@ -54,7 +76,17 @@ const FootballPitchDetail = () => {
                     <b>Image</b>
                   </td>
                   <td>
-                    <input type="text" />
+                    <tr>
+                      <img
+                        src={image}
+                        style={{ width: "50px", height: "50px" }}
+                        alt="Null"
+                      ></img>
+                    </tr>
+                    <tr>
+                      <input type="text" value={image} />
+                    </tr>
+                    {/* <img src={image}></img> */}
                   </td>
                 </tr>
                 <tr>
@@ -62,7 +94,7 @@ const FootballPitchDetail = () => {
                     <b>Phone</b>
                   </td>
                   <td>
-                    <input type="text" />
+                    <input type="text" value={phoneNumber} />
                   </td>
                 </tr>
                 <tr>
@@ -70,7 +102,7 @@ const FootballPitchDetail = () => {
                     <b>Address</b>
                   </td>
                   <td>
-                    <input type="text" />
+                    <input type="text" value={address} />
                   </td>
                 </tr>
                 <tr>
@@ -124,6 +156,10 @@ const FootballPitchDetail = () => {
 
           <div className="text-center mt-2">
             <button className="btn btn-primary">Save</button>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <button className="btn btn-primary" onClick={(e) => navigate(-1)}>
+              Cancel
+            </button>
           </div>
         </table>
       </div>

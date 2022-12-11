@@ -35,7 +35,6 @@ console.log(pitches)
                         <tr>
                           <th><span>Tên sân</span></th>
                           <th><span>Địa chỉ</span></th>
-                          <th className="text-center"><span>Tình trạng</span></th>
                           <th><span>Liên hệ</span></th>
                           <th>&nbsp;</th>
                         </tr>
@@ -75,7 +74,6 @@ console.log(pitches)
                                           <td>
                                               {pitch?.address?.address}
                                         </td>
-                                        <td style={{ width: '10%' }}>Còn</td>
                                                 {/* {(() => {
                                                     switch (car?.status.name) {
                                                         case 'Đang hoạt động':

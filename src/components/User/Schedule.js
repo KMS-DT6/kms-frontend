@@ -1,62 +1,115 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function Schedule() {
+  const [turfes, setTurfes] = useState([])
+  
+  useEffect(() => {
+    fetchData();
+  }, [])
+  
+  const fetchData = async () => {
+      const url = 'http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/my-account/history-booking'
+      const response = await axios.get(url,{ headers: {"Authorization" : `Bearer ${sessionStorage.getItem('token')}`}})
+      setTurfes(response?.data?.data?.items)
+      console.log(response)
+  
+  }
   return (
     <ScheduleCSS>
         <div>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+        
         <div className="container">
+        <span className="spanHe">Lịch sử booking</span>
           <table className="table user-list">
             <thead>
               <tr>
                 <th><span>Tên sân</span></th>
+                <th><span>Size sân</span></th>
                 <th><span>Địa chỉ</span></th>
                 <th className="text-center"><span>Tình trạng</span></th>
-                <th>
-                </th>
-                <th>                  
-                &nbsp;
-                </th>
               </tr>
             </thead>
             <tbody>
+              {
+                turfes?.map((turf, index) => (
+                  <tr key={index}>
+                    <td>
+                      <img src={turf?.image} />
+                      <Link to={`/pitch/${turf?.footballPitchId}`} className="user-link">{turf?.footballPitchName}</Link>
+                    </td>
+                    <td>
+                      {turf?.address?.address}
+                    </td>
+                    <td style={{ width: '10%' }}>Đã thanh toán</td>
+                    {/* {(() => {
+                          switch (car?.status.name) {
+                            case 'Đang hoạt động':
+                                                            return (
+                                                                <td className="text-center">
+                                                                    <span className="label label-success">{car?.status.name}</span>
+                                                                </td>
+                                                            )
+                                                        case 'Đã bị từ chối':
+                                                            return (
+                                                                <td className="text-center">
+                                                                    <span className="label label-denied">{car?.status.name}</span>
+                                                                </td>
+                                                            )
+                                                        case 'Đang chờ duyệt':
+                                                            return (
+                                                                <td className="text-center">
+                                                                    <span className="label label-warning">{car?.status.name}</span>
+                                                                </td>
+                                                            )
+                                                        default:
+                                                            return (
+                                                                <td className="text-center">
+                                                                    <span className="label label-active">{car?.status.name}</span>
+                                                                </td>
+                                                            )
+                                                    }
+                                                })()} */}
+                    <td>
+                      {turf?.phoneNumber}
+                    </td>
+                    {/* <td style={{ width: '20%' }}>
+                      <a href={`/pitch/${turf?.footballPitchId}`} className="table-link">
+                        <span className="fa-stack">
+                          <i className="fa fa-square fa-stack-2x" />
+                          <i className="fa fa-search fa-stack-1x fa-inverse" />
+                        </span>
+                      </a>
+                    </td> */}
+                  </tr>
+                ))
+              }
               <tr>
                 <td>
-                  <img src="https://htsport.vn/wp-content/uploads/2019/12/25-kich-thuoc-san-bong-7-nguoi-2.jpg" />
-                  <a href="/turf/id" className="user-link">Tên Sân</a>
-                  {/* <p>Day la ten sa/n</p> */}
-                  <span className="user-subhead">Admin</span>
-                </td>
-                <td style={{ width: '15%' }}>
-                  <p>Nam cao</p>
-                </td>
-                <td className="text-center">
-                  <span className="label label-success">Active</span>
+                  <img src="https://thegioiconhantao.com.vn/wp-content/uploads/2016/11/phat-den.png" alt />
+                  <a href="" className="user-link">Sân A1</a>
+                  <span className="user-subhead">Customer</span>
                 </td>
                 <td>
-                  <a href="#">spencer@tracy</a>
+                  Sân 5
                 </td>
-                <td style={{ width: '15%' }}>
-                  <a href="/list-sub-pitch/1" className="table-link">
-                    <span className="fa-stack">
-                      <i className="fa fa-square fa-stack-2x" />
-                      <i className="fa fa-search fa-stack-1x fa-inverse" />
-                    </span>
-                  </a>
-                  <a href="pitch-admin-update/1" className="table-link">
-                    <span className="fa-stack">
-                      <i className="fa fa-square fa-stack-2x" />
-                      <i className="fa fa-pencil fa-stack-1x fa-inverse" />
-                    </span>
-                  </a>
-                  <a href="#" className="table-link danger">
-                    <span className="fa-stack">
-                      <i className="fa fa-square fa-stack-2x" />
-                      <i className="fa fa-trash-o fa-stack-1x fa-inverse" />
-                    </span>
-                  </a>
+                <td>
+                  Nam cao
                 </td>
+                <td className="text-center">
+                  <span className="label label-success">Đã thanh toán</span>
+                </td>
+                {/* <td style={{ width: '10%' }}>
+                  <a href="#" className="table-link">
+                    <span className="fa-stack">
+                      <i className="fa fa-square fa-stack-2x" />
+                      <i className="fa fa-plus fa-stack-1x fa-inverse" />
+                    </span>
+                  </a>
+                </td> */}
               </tr>
             </tbody>
           </table>
@@ -72,12 +125,19 @@ const ScheduleCSS = styled.div`
   // margin-left:240px;
   // margin-top:-270px;
   // background-color:red;
-
+  table {
+    margin-left: 10px;
+  }
+.container {
+  display: block;
+}
 .spanHe {
 	text-align: center;
 	font-size: xxx-large;
 	color: #0d6efd;
 	margin-bottom:10px;
+  margin-left: 38%;
+  // font-size: 50px;
   }
 
 margin-left: 240px;

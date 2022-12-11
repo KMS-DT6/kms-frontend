@@ -23,28 +23,21 @@ export const COLUMNS = [
   {
     Header: "Add",
 
-    accessor: "address",
+    accessor: "address.address",
     disableFilters: true,
     sticky: "left",
   },
   {
     Header: "District",
 
-    accessor: "district",
+    accessor: "address.district",
     disableFilters: true,
     sticky: "left",
   },
   {
     Header: "City",
 
-    accessor: "city",
-    disableFilters: true,
-    sticky: "left",
-  },
-  {
-    Header: "Website",
-
-    accessor: "website",
+    accessor: "address.city",
     disableFilters: true,
     sticky: "left",
   },
