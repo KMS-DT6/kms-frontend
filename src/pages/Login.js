@@ -33,7 +33,7 @@ function Login() {
       navigate("/manage");
     }
     if (jwt_decode(sessionStorage.getItem("token")).roles[0] === "CUSTOMER") {
-      navigate("/");
+      navigate("/pitch");
     }
   }
   return (

@@ -13,7 +13,7 @@ function MenuManage() {
         <div className="position-sticky">
           <div className="list-group list-group-flush mx-3 mt-4">
             <a
-              href="/football-pitch-admin"
+              href="/list-sub-pitch"
               className="list-group-item list-group-item-dark py-2 ripple"
             >
               <i className="fas fa-chart-area fa-fw me-3" />

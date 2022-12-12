@@ -1,18 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
-import PitchDetail from '../../components/SubFootballPitch/ListSubFootballPitch'
-import Header from '../../components/Header'
-import Menu from '../../components/Menu'
+import ListSubFootballPitch from '../../components/SubFootballPitch/ListSubFootballPitch'
+import HeaderManage from '../../components/HeaderManage'
+import MenuManage from '../../components/MenuManage'
 
 function ListSubFootballPitchPage() {
   return (
     <ListSubFootballPitchCSS>
         <div className='tt'>
-            <Header />
+            <HeaderManage />
             <div className="flext">
-                <Menu />
+                <MenuManage />
                 <div className='dash'>
-                  <PitchDetail />
+                  <ListSubFootballPitch />
                 </div>
             </div>
         </div>

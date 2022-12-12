@@ -13,11 +13,8 @@ import PitchPage from "./pages/PitchPage";
 import PitchDetailPage from "./pages/PitchDetailPage";
 import SchedulePage from "./pages/SchedulePage";
 import MyProfilePage from "./pages/MyProfilePage";
-import ListPitchPage from './pages/FootballPitchAdmin/ListPitch';
 import AdminPage from "./pages/AdminPage/AdminPage";
 import ListSubFootballPitchPage from './pages/SubFootballPitch/ListSubFootballPitch';
-import UpdatePitchPage from './pages/FootballPitchAdmin/UpdatePitch';
-import CreatePitchPage from './pages/FootballPitchAdmin/CreatePitch';
 import RegisterPage from './pages/Register/register';
 import FootballPitchAdminManagePage from "./pages/FootballPitchAdminManagePage";
 import ListOtherServicePage from "./pages/OtherService/ListOtherServicePage";
@@ -34,17 +31,14 @@ function App() {
       <Routes>
         <Route path="/schedule" element={<HomePage />} />
         <Route path="/pitch/:id" element={<PitchDetailPage />} />
-        <Route path="/list-sub-pitch/:id" element={<ListSubFootballPitchPage />} />
+        <Route path="/list-sub-pitch" element={<ListSubFootballPitchPage />} />
         <Route path="/turf/:id" element={<TurfPage />} />
-        <Route path="/" element={<PitchPage />} />
+        <Route path="/" element={<Login />} />
         <Route path="/pitch" element={<PitchPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/my" element={<MyProfilePage />} />
         <Route path="/schedule" element={<SchedulePage />} />
         <Route path="/admin/*" element={<AdminPage />} />
-        <Route path='/football-pitch-admin' element={<ListPitchPage/>} />
-        <Route path='/pitch-admin-update/:id' element={<UpdatePitchPage/>} />
-        <Route path='/pitch-admin-create' element={<CreatePitchPage/>} />
         <Route path='/register' element={<RegisterPage/>} />
         <Route path="/manage" element={<FootballPitchAdminManagePage />} />
         <Route path="/list-other-service" element={<ListOtherServicePage />} />
