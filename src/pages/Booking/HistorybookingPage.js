@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import HistoryBooking from '../../../components/Booking/HistoryBooking'
-import Header from '../../../components/Header'
-import Menu from '../../../components/Menu'
+import HistoryBooking from '../../components/Booking/HistoryBooking'
+import Header from '../../components/Header'
+import Menu from '../../components/Menu'
 
 function HistorybookingPage(){
     return(

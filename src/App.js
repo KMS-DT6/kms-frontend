@@ -16,7 +16,7 @@ import MyProfilePage from "./pages/MyProfilePage";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import ListSubFootballPitchPage from './pages/SubFootballPitch/ListSubFootballPitch';
 import RegisterPage from './pages/Register/register';
-import HistorybookingPage from "./pages/AdminPage/Booking/HistorybookingPage";
+import HistorybookingPage from "./pages/Booking/HistorybookingPage";
 import FootballPitchAdminManagePage from "./pages/FootballPitchAdminManagePage";
 import ListOtherServicePage from "./pages/OtherService/ListOtherServicePage"
 
