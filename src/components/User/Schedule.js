@@ -11,10 +11,10 @@ function Schedule() {
   }, [])
   
   const fetchData = async () => {
-      const url = 'http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/my-account/history-booking'
+      const url = 'http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/my-account/history-booking?footballPitchName=&fromDate=&toDate=&status=true&isPaid=true'
       const response = await axios.get(url,{ headers: {"Authorization" : `Bearer ${sessionStorage.getItem('token')}`}})
-      setTurfes(response?.data?.data?.items)
-      console.log(response)
+      // setTurfes(response?.data?.data?.items)
+      console.log(response?.data?.data?.items)
   
   }
   return (
