@@ -19,6 +19,7 @@ import ListSubFootballPitchPage from './pages/SubFootballPitch/ListSubFootballPi
 import UpdatePitchPage from './pages/FootballPitchAdmin/UpdatePitch';
 import CreatePitchPage from './pages/FootballPitchAdmin/CreatePitch';
 import RegisterPage from './pages/Register/register';
+import HistorybookingPage from "./pages/AdminPage/Booking/HistorybookingPage";
 
 
 
@@ -38,6 +39,7 @@ function App() {
         <Route path="/pitch" element={<PitchPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/my" element={<MyProfilePage />} />
+        <Route path="/historybooking" element={<HistorybookingPage />} />
         <Route path="/schedule" element={<SchedulePage />} />
         <Route path="/admin/*" element={<AdminPage />} />
         <Route path='/football-pitch-admin' element={<ListPitchPage/>} />
