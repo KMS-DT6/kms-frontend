@@ -21,6 +21,7 @@ function Login() {
       "http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/login",
       user
     );
+    console.log( response?.data?.access_token)
     sessionStorage.setItem("token", response?.data?.access_token);
     //console.log(sessionStorage.getItem("token"));
     //console.log(jwt_decode(sessionStorage.getItem("token")).roles[0]);
