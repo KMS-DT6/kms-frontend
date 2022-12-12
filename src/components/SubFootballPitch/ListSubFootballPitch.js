@@ -241,6 +241,7 @@ function ListSubFootballPitch() {
                 <th><span>Loại</span></th>
                 <th><span>Tình trạng</span></th>
                 <th><span>Giá</span></th>
+                
                 <th>
                   <a onClick={(e) => {setIdSubFootballPitch(null); setValueSubFootballPitch(null);setVisible(true) }} className="btn btn-primary" type="button">
                     Create
