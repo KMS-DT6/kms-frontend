@@ -33,6 +33,20 @@ function Menu() {
               <i className="fas fa-chart-area fa-fw me-3" />
               <span>Pitch</span>
             </a>
+            <a
+              href="/schedule"
+              className="list-group-item list-group-item-dark py-2 ripple"
+            >
+              <i className="fas fa-chart-area fa-fw me-3" />
+              <span>My Schedule</span>
+            </a>
+            <a
+              href="/historybooking"
+              className="list-group-item list-group-item-dark py-2 ripple"
+            >
+              <i className="fas fa-chart-area fa-fw me-3" />
+              <span>History Booking</span>
+            </a>
           </div>
         </div>
       </nav>

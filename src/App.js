@@ -16,8 +16,9 @@ import MyProfilePage from "./pages/MyProfilePage";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import ListSubFootballPitchPage from './pages/SubFootballPitch/ListSubFootballPitch';
 import RegisterPage from './pages/Register/register';
+import HistorybookingPage from "./pages/AdminPage/Booking/HistorybookingPage";
 import FootballPitchAdminManagePage from "./pages/FootballPitchAdminManagePage";
-import ListOtherServicePage from "./pages/OtherService/ListOtherServicePage";
+import ListOtherServicePage from "./pages/OtherService/ListOtherServicePage"
 
 
 
@@ -29,7 +30,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/schedule" element={<HomePage />} />
+        {/* <Route path="/schedule" element={<HomePage />} /> */}
         <Route path="/pitch/:id" element={<PitchDetailPage />} />
         <Route path="/list-sub-pitch" element={<ListSubFootballPitchPage />} />
         <Route path="/turf/:id" element={<TurfPage />} />
@@ -37,6 +38,7 @@ function App() {
         <Route path="/pitch" element={<PitchPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/my" element={<MyProfilePage />} />
+        <Route path="/historybooking" element={<HistorybookingPage />} />
         <Route path="/schedule" element={<SchedulePage />} />
         <Route path="/admin/*" element={<AdminPage />} />
         <Route path='/register' element={<RegisterPage/>} />
