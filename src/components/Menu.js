@@ -19,7 +19,7 @@ function Menu() {
         <div className="position-sticky">
           <div className="list-group list-group-flush mx-3 mt-4">
             <a
-              href="/"
+              href="/pitch"
               className="list-group-item list-group-item-dark py-2 ripple"
               aria-current="true"
             >
@@ -39,13 +39,6 @@ function Menu() {
             >
               <i className="fas fa-chart-area fa-fw me-3" />
               <span>My Schedule</span>
-            </a>
-            <a
-              href="/football-pitch-admin"
-              className="list-group-item list-group-item-dark py-2 ripple"
-            >
-              <i className="fas fa-chart-area fa-fw me-3" />
-              <span>Manage Pitch</span>
             </a>
             <a
               href="/historybooking"
