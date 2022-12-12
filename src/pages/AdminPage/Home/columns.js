@@ -2,49 +2,42 @@ export const COLUMNS = [
   {
     Header: "ID",
 
-    accessor: "Id",
+    accessor: "footballPitchId",
     disableFilters: true,
     sticky: "left",
   },
   {
     Header: "PitchfName",
 
-    accessor: "school",
+    accessor: "footballPitchName",
     disableFilters: true,
     sticky: "left",
   },
   {
     Header: "Phone",
 
-    accessor: "phone",
+    accessor: "phoneNumber",
     disableFilters: true,
     sticky: "left",
   },
   {
-    Header: "Street",
+    Header: "Add",
 
-    accessor: "street",
+    accessor: "address.address",
     disableFilters: true,
     sticky: "left",
   },
   {
     Header: "District",
 
-    accessor: "district",
+    accessor: "address.district",
     disableFilters: true,
     sticky: "left",
   },
   {
     Header: "City",
 
-    accessor: "city",
-    disableFilters: true,
-    sticky: "left",
-  },
-  {
-    Header: "Website",
-
-    accessor: "website",
+    accessor: "address.city",
     disableFilters: true,
     sticky: "left",
   },

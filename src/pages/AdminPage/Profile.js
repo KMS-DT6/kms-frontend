@@ -7,21 +7,17 @@ import CITY from "../vn/CITY.json";
 import DISTRICT from "../vn/DISTRICT.json";
 
 const Profile = () => {
-  const token = localStorage.getItem("access_token");
+  const token = sessionStorage.getItem("token");
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   const [profile, setProfile] = useState({});
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
-  const [dateOfBirth, setdateOfBirth] = useState("");
-  const [gender, setgender] = useState(true);
-  const [phone, setphone] = useState("");
-  const [email, setemail] = useState("");
-  const [street, setstreet] = useState("");
+  const [phoneNumber, setphoneNumber] = useState("");
+
+  const [address, setaddress] = useState("");
   const [district, setdistrict] = useState("");
   const [city, setcity] = useState("");
-  const [placeOfBirth, setplaceOfBirth] = useState("");
-  const [workingPosition, setworkingPosition] = useState("");
-  const [roleId, setroleId] = useState(3);
+
   const [visible, setVisible] = useState(false);
   const [listcity, setlistcity] = useState([]);
   const [listdistrict, setlistdistrict] = useState([]);
@@ -30,20 +26,17 @@ const Profile = () => {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get("users");
-        //console.log({ data });
+        const { data } = await axios.get(
+          "http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/my-account"
+        );
+        console.log({ data });
         setProfile(data.data.user);
         setfirstName(data.data.user.firstName);
         setlastName(data.data.user.lastName);
-        setdateOfBirth(data.data.user.dateOfBirth);
-        setgender(data.data.user.gender);
-        setphone(data.data.user.phone);
-        setemail(data.data.user.email);
-        setstreet(data.data.user.street);
-        setdistrict(data.data.user.district);
-        setcity(data.data.user.city);
-        setplaceOfBirth(data.data.user.placeOfBirth);
-        setworkingPosition(data.data.user.workingPosition);
+        setphoneNumber(data.data.user.phoneNumber);
+        setaddress(data.data.user.address.address);
+        setdistrict(data.data.user.address.district);
+        setcity(data.data.user.address.city);
       } catch (e) {}
     })();
   }, []);
@@ -68,19 +61,20 @@ const Profile = () => {
   const save = async (e) => {
     e.preventDefault();
 
-    const res = await axios.put("users", {
-      firstName,
-      lastName,
-      gender,
-      phone,
-      email,
-      street,
-      district,
-      city,
-      placeOfBirth,
-      workingPosition,
-      roleId,
-    });
+    const res = await axios.put(
+      "http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/my-account",
+      {
+        username: "admin",
+        firstName,
+        lastName,
+
+        phoneNumber,
+
+        address,
+        district,
+        city,
+      }
+    );
     setVisible(true);
 
     //alert("done.");
@@ -108,9 +102,9 @@ const Profile = () => {
                 src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
               />
               <span className="font-weight-bold">
-                <b>{profile.displayName}</b>
+                <b>{profile.username}</b>
               </span>
-              <span className="text-black-50">{email}</span>
+              <span className="text-black-50"></span>
               <span> </span>
             </div>
           </div>
@@ -145,7 +139,7 @@ const Profile = () => {
               </div>
 
               <div className="row mt-3">
-                <div className="col-md-12">
+                {/* <div className="col-md-12">
                   <b>DateOfBirth</b>
                   <input
                     type="date"
@@ -163,18 +157,18 @@ const Profile = () => {
                     <option value={true}>Male</option>
                     <option value={false}>Female</option>
                   </CFormSelect>
-                </div>
+                </div> */}
                 <div className="col-md-12">
-                  <b>Phone</b>
+                  <b>PhoneNumber</b>
                   <input
                     type="text"
                     className="form-control"
-                    value={phone}
-                    onChange={(e) => setphone(e.target.value)}
+                    value={phoneNumber}
+                    onChange={(e) => setphoneNumber(e.target.value)}
                     required
                   />
                 </div>
-                <div className="col-md-12">
+                {/* <div className="col-md-12">
                   <b>Email</b>
                   <input
                     type="text"
@@ -193,14 +187,14 @@ const Profile = () => {
                     onChange={(e) => setplaceOfBirth(e.target.value)}
                     required
                   />
-                </div>
+                </div> */}
                 <div className="col-md-12">
-                  <b>Street</b>
+                  <b>Address</b>
                   <input
                     type="text"
                     className="form-control"
-                    value={street}
-                    onChange={(e) => setstreet(e.target.value)}
+                    value={address}
+                    onChange={(e) => setaddress(e.target.value)}
                     required
                   />
                 </div>
