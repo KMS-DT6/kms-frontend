@@ -30,7 +30,7 @@ function Login() {
     if (
       jwt_decode(sessionStorage.getItem("token")).roles[0] === "FOOTBALL_PITCH"
     ) {
-      navigate("/");
+      navigate("/manage");
     }
     if (jwt_decode(sessionStorage.getItem("token")).roles[0] === "CUSTOMER") {
       navigate("/");
