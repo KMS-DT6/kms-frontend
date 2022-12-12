@@ -300,7 +300,7 @@ const FootballPitchDetail = () => {
           </table>
           <div className="mt-5 text-center">
             <button className="btn btn-primary " onClick={(e) => handleSave()}>
-              Save
+              {title ? "Create" : "Update"}
             </button>
           </div>
         </CModalBody>
