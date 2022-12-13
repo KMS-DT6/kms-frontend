@@ -34,12 +34,13 @@ function App() {
         <Route path="/pitch/:id" element={<PitchDetailPage />} />
         <Route path="/list-sub-pitch" element={<ListSubFootballPitchPage />} />
         <Route path="/turf/:id" element={<TurfPage />} />
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<PitchPage />} />
+        {/* <Route path="/" element={<Login />} /> */}
         <Route path="/pitch" element={<PitchPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/my" element={<MyProfilePage />} />
         <Route path="/historybooking" element={<HistorybookingPage />} />
-        <Route path="/schedule" element={<SchedulePage />} />
+        {/* <Route path="/schedule" element={<SchedulePage />} /> */}
         <Route path="/admin/*" element={<AdminPage />} />
         <Route path='/register' element={<RegisterPage/>} />
         <Route path="/manage" element={<FootballPitchAdminManagePage />} />

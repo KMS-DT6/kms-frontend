@@ -38,19 +38,52 @@ export const PaginationTable = () => {
   const [footballPitchName, setfootballPitchName] = useState("");
   const [phoneNumber, setphoneNumber] = useState("");
   const [address, setaddress] = useState("");
+  const [image, setimage] = useState("");
   const [district, setdistrict] = useState("");
   const [city, setcity] = useState("");
-  const [roleId, setroleId] = useState(3);
+  const [roleId, setroleId] = useState(0);
   const [visible, setVisible] = useState(false);
   const [listcity, setlistcity] = useState([]);
   const [listdistrict, setlistdistrict] = useState([]);
 
   const handleDelete = async (id) => {
-    const res = await axios.delete(`football-pitches/${id}`);
+    const res = await axios.delete(
+      `http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/football-pitches/${id}`
+    );
     //console.log(res);
     setlistPitch(listPitch.filter((item) => item.footballPitchId !== id));
     //window.location.reload();
     setVisible(true);
+  };
+  const handleCreate = async () => {
+    const res = await axios.post(
+      "http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/football-pitches",
+      {
+        footballPitchName,
+        phoneNumber,
+        image,
+        address,
+        district,
+        city,
+      }
+    );
+    console.log(res);
+    setlistPitch([
+      ...listPitch,
+      {
+        footballPitchId: res.data.data.id,
+        footballPitchName,
+        phoneNumber,
+        image,
+        address: {
+          address,
+          district,
+          city,
+        },
+      },
+    ]);
+    setVisible(false);
+    window.alert("Thành công.");
   };
 
   useEffect(() => {
@@ -131,7 +164,10 @@ export const PaginationTable = () => {
                 <b>FootballPitchName</b>
               </td>
               <td>
-                <input type="text" />
+                <input
+                  type="text"
+                  onChange={(e) => setfootballPitchName(e.target.value)}
+                />
               </td>
             </tr>
             <tr>
@@ -139,7 +175,7 @@ export const PaginationTable = () => {
                 <b>Image</b>
               </td>
               <td>
-                <input type="text" />
+                <input type="text" onChange={(e) => setimage(e.target.value)} />
               </td>
             </tr>
             <tr>
@@ -147,7 +183,10 @@ export const PaginationTable = () => {
                 <b>Phone</b>
               </td>
               <td>
-                <input type="text" />
+                <input
+                  type="text"
+                  onChange={(e) => setphoneNumber(e.target.value)}
+                />
               </td>
             </tr>
             <tr>
@@ -155,7 +194,10 @@ export const PaginationTable = () => {
                 <b>Address</b>
               </td>
               <td>
-                <input type="text" />
+                <input
+                  type="text"
+                  onChange={(e) => setaddress(e.target.value)}
+                />
               </td>
             </tr>
             <tr>
@@ -190,7 +232,12 @@ export const PaginationTable = () => {
             </tr>
           </table>
           <div className="mt-5 text-center">
-            <button className="btn btn-primary ">Create</button>
+            <button
+              className="btn btn-primary "
+              onClick={(e) => handleCreate()}
+            >
+              Create
+            </button>
           </div>
         </CModalBody>
       </CModal>

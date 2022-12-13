@@ -1,67 +1,82 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useState } from 'react'
+import { useNavigate, useParams } from 'react-router'
 import styled from 'styled-components'
 
 function Turf() {
+    const [date, setDate] = useState()
+    const [start, setStart] = useState()
+    const [end, setEnd] = useState()
+    const [service, setService] = useState()
+    const [count, setCount] = useState('0')
+
+    const subId = useParams()
+    const booKing = async () => {
+        const data = {
+            "subFootballPitchId": subId.id,
+            "bookDay": date,
+            "timeStart": start,
+            "timeEnd": end,
+            "bookingOtherService": [
+              {
+                "otherServiceId": service,
+                "quantity": count
+              }
+            ]
+          }
+          
+          const response = await axios.post(
+            "http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/booking-pitches",
+            data,
+            {
+                headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` },
+            }
+        )
+        { response?.data?.success ? alert('Booking success') : alert('Booking failed')}
+        window.location.reload()
+    }
   return (
     <TurfCSS>
-          <form className="row">
-            <span>Booking saan a</span>
-            <div className="col-md-6">
-                  <label className="form-label">Khung giờ</label>
-                  <select name id className="form-select">
-                      <option value>15h - 16h</option>
-                      <option value>16h - 17h</option>
-                      <option value>18h - 19h</option>
-                      <option value>19h - 20h</option>
-                  </select>
+          {/* <form className="row"> */}
+            <span>Booking</span>
+            <br/>
+            <br/>
+            <label className="form-label">Date</label>
+            <div className="col-md-12">
+                  
+                  <input type="date" onChange={(e) => setDate(e.target.value)} className="form-control"/>
               </div>
-              <div className="col-md-6">
-                  <label className="form-label">Tên người đặt</label>
-                  <input type="text" className="form-control" />
-              </div>
+              <br/>
               <div className="col-md-12">
-                  <label className="form-label">Liên hệ</label>
-                  <input type="text" className="form-control" />
+              <div className="col-md-6">
+                  <label className="form-label">Time start (hh/mm)</label>
+                  <input type="time" onChange={(e) => setStart(e.target.value)} className="form-control" />
               </div>
               <div className="col-md-6">
-                  <label className="form-label">Ghi chú</label>
-                  <input type="email" className="form-control" />
+                  <label className="form-label">Time end</label>
+                  <input type="time" onChange={(e) => setEnd(e.target.value)} className="form-control" />
               </div>
+              </div>
+              <br/>
+              <div className="col-md-12">
               <div className="col-md-6">
                   <label className="form-label">Dịch vụ</label>
-                  <select name id className="form-select">
-                    <option value>Không</option>
-                      <option value>Nước khoáng ngọt</option>
-                      <option value>Nước khoáng nhạt</option>
-                      <option value>Nước lọc</option>
-                      
+                  <select onChange={(e) => setService(e.target.value)} className="form-select">
+                    <option value='0'>Không</option>
+                      <option value = '2'>Bóng sân 7</option>
+                      <option value ='6'>Áo đấu</option>
                   </select>
               </div>
-              {/* <div className="col-md-2">
-                  <label className="form-label">Zip</label>
-                  <input type="text" className="form-control" />
-              </div> */}
-              {/* <div className="col-md-6">
-                  <label className="form-label">Upload Domicile</label>
-                  <input type="file" className="form-control" />
-              </div> */}
+
               <div className="col-md-6">
-                  <label className="form-label">Nước đá trong trận</label>
-                  <br />
-                  <div className="form-check form-check-inline">
-                      <input type="radio" className="form-check-input" name="rdo" defaultChecked />
-                      <label className="form-check-label">Có</label>
-                  </div>
-                  <div className="form-check form-check-inline">
-                      <input type="radio" className="form-check-input" name="rdo" />
-                      <label className="form-check-label">Không</label>
-                  </div>
+                  <label className="form-label">Count</label>
+                  <input type="text" onChange={(e) => setCount(e.target.value)} className="form-control" />
               </div>
-              <div className="col-md-12">
-                  <br />
-                  <button className="btn btn-primary form-control">Đặt</button>
               </div>
-          </form>
+              <div className="col-md-3">
+                  <button className="btn btn-primary form-control" onClick={booKing}>Đặt</button>
+              </div>
+          {/* </form> */}
 
     </TurfCSS>
   )
@@ -73,7 +88,9 @@ const TurfCSS = styled.div`
 // margin-left:240px;
 // margin-top:-270px;
 // background-color:red;
-
+.col-md-12 {
+    display: flex;
+}
 margin-left: 400px;
 body{margin-top:20px;}
 width: 50%;
@@ -81,7 +98,7 @@ width: 50%;
     margin-top: 20px;
 }
 span {
-    text-align: center;
+    // text-align: center;
     font-size: xxx-large;
     color: #0d6efd;
 }

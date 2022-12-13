@@ -12,12 +12,12 @@ const Profile = () => {
   const [profile, setProfile] = useState({});
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
-  const [phone, setphone] = useState("");
+  const [phoneNumber, setphoneNumber] = useState("");
 
   const [address, setaddress] = useState("");
   const [district, setdistrict] = useState("");
   const [city, setcity] = useState("");
-  const [roleId, setroleId] = useState(3);
+
   const [visible, setVisible] = useState(false);
   const [listcity, setlistcity] = useState([]);
   const [listdistrict, setlistdistrict] = useState([]);
@@ -33,7 +33,7 @@ const Profile = () => {
         setProfile(data.data.user);
         setfirstName(data.data.user.firstName);
         setlastName(data.data.user.lastName);
-        setphone(data.data.user.phoneNumber);
+        setphoneNumber(data.data.user.phoneNumber);
         setaddress(data.data.user.address.address);
         setdistrict(data.data.user.address.district);
         setcity(data.data.user.address.city);
@@ -61,18 +61,20 @@ const Profile = () => {
   const save = async (e) => {
     e.preventDefault();
 
-    const res = await axios.put("my-account", {
-      firstName,
-      lastName,
+    const res = await axios.put(
+      "http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/my-account",
+      {
+        username: "admin",
+        firstName,
+        lastName,
 
-      phone,
+        phoneNumber,
 
-      address,
-      district,
-      city,
-
-      roleId,
-    });
+        address,
+        district,
+        city,
+      }
+    );
     setVisible(true);
 
     //alert("done.");
@@ -157,12 +159,12 @@ const Profile = () => {
                   </CFormSelect>
                 </div> */}
                 <div className="col-md-12">
-                  <b>Phone</b>
+                  <b>PhoneNumber</b>
                   <input
                     type="text"
                     className="form-control"
-                    value={phone}
-                    onChange={(e) => setphone(e.target.value)}
+                    value={phoneNumber}
+                    onChange={(e) => setphoneNumber(e.target.value)}
                     required
                   />
                 </div>

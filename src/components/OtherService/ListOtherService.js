@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import otherServiceApi from '../../api/otherServiceApi';
+
 import {
   CModal,
   CButton,
@@ -463,7 +464,7 @@ body{margin-top:20px;}
 	text-decoration: none;
 	width: 50%;
 	float: left;
-	font-size: 0.875em;
+	font-size: 0.875em; 
 }
 .table-products .price > i {
 	color: #8dc859;
