@@ -180,9 +180,9 @@ const FootballPitchDetail = () => {
         }
       );
       console.log(res);
-      setVisible(false);
-      window.alert("Done.");
     }
+    setVisible(false);
+    window.alert("Success.");
   };
   return (
     <>
