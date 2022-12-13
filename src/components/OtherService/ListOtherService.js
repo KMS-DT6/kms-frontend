@@ -239,8 +239,8 @@ function ListOtherService() {
           <table className="table user-list">
             <thead>
               <tr>
-                <th><span>Tên dịch vụ</span></th>
-                <th><span>Giá (VND)</span></th>
+                <th><span>Name service</span></th>
+                <th><span>Price (VND)</span></th>
                 <th>
                   <a onClick={(e) => { setIdOtherService(null) ; setValueOtherService(idOtherService); setVisible(true) }} className="btn btn-primary" type="button">
                     Create

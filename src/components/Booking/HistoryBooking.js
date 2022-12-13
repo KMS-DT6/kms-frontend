@@ -65,15 +65,15 @@ function HistoryBooking() {
             <table className="table">
                 <tbody><tr>
                     <td>
-                        <b>Từ Ngày</b>
+                        <b>From date</b>
                         <input type="date" onChange={e => setstartdate(e.target.value)} />;
                     </td>
                     <td>
-                        <b>Đến  Ngày</b>
+                        <b>To date</b>
                         <input type="date" onChange={e => setenddate(e.target.value)} />;
                     </td>
                     <td>
-                        <b>Tên sân </b>
+                        <b>Name </b>
                         <input type="text" onChange={e => setname(e.target.value)} />
                     </td>
                     <td>
@@ -85,7 +85,7 @@ function HistoryBooking() {
                     </td>
                 </tr></tbody></table>
             <div className="row">
-                <h2><span className='spanHe'>lịch sử đặt sân </span></h2>
+                <h2><span className='spanHe'>History booking </span></h2>
                 <div className="col-lg-18">
                     <div className="main-box clearfix">
                         <div className="table-responsive">
