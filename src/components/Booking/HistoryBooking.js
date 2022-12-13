@@ -9,38 +9,59 @@ function HistoryBooking() {
     const [enddate, setenddate] = useState("")
     const [name, setname] = useState('')
     const [historyBookingdata, sethistoryBookingdata] = useState([])
-    const [isPaid,setisPaid]=useState(true)
+    const [isPaid, setisPaid] = useState(true)
     console.log(isPaid)
+    const handleDelete = async (id) => {
+        try {
+            console.log(id)
+            const token = sessionStorage.getItem('token')
+            console.log(token);
+            const resData = await BookingAPI.DeleteHistoryBooking(id, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+
+            })
+            console.log(resData);
+            // setListOtherService(resData?.data?.items);
+        } catch (error) {
+            console.log(error)
+        }
+        // getListSubFootballPitch(null);
+    }
+    const ListhistoryBookingdata = async (ValueSubmit) => {
+
+        try {
+            const token = sessionStorage.getItem('token')
+            console.log(token);
+            const HistoryBookingdata = await BookingAPI.HistoryBooking({
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+                params: { ...ValueSubmit }
+            })
+            sethistoryBookingdata(HistoryBookingdata.data.items)
+            console.log()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
         const ValueSubmit =
         {
             footballPitchName: name,
             fromDate: startdate,
             toDate: enddate,
-            status: true,
             isPaid: isPaid
         }
         console.log(ValueSubmit);
-        (async () => {
-            try {
-                const token = sessionStorage.getItem('token')
-                console.log(token);
-                const HistoryBookingdata = await BookingAPI.HistoryBooking({
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    },
-                    params: { ...ValueSubmit }
-                })
-                sethistoryBookingdata(HistoryBookingdata.data.items)
-                console.log()
-            } catch (error) {
-                console.log(error)
-            }
-        })()
+        ListhistoryBookingdata(ValueSubmit)
 
-    }, [name, startdate, enddate,isPaid])
+    }, [name, startdate, enddate, isPaid])
     return (
-        <>
+        <><div>
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
             <table className="table">
                 <tbody><tr>
                     <td>
@@ -57,7 +78,7 @@ function HistoryBooking() {
                     </td>
                     <td>
                         <div className="form-check form-switch">
-                            <input className="form-check-input"  type="checkbox" id="flexSwitchCheckDefault"  defaultChecked={isPaid} onChange={()=>setisPaid(!isPaid)}/>
+                            <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" defaultChecked={isPaid} onChange={() => setisPaid(!isPaid)} />
                             <label className="form-check-label" htmlFor="flexSwitchCheckDefault"><b>Đã thanh toán</b></label>
                         </div>
 
@@ -79,17 +100,12 @@ function HistoryBooking() {
                                         <th><span>giá dịch vụ </span></th>
                                         <th><span>tổng tiền</span></th>
                                         <th><span>trạng thái </span></th>
+                                        <th><span></span></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {historyBookingdata.map((item, index) => {
-                                        let Paid = ''
-                                        if (item.isPaid) {
-                                            Paid = 'Đã thanh toán'
-                                        }
-                                        else {
-                                            Paid = 'Chưa thanh toán'
-                                        }
+
                                         return (<tr key={index}>
                                             <td>{item.footballPitch.footballPitchName}</td>
                                             <td>{item.footballPitch.subFootballPitchName}</td>
@@ -98,7 +114,23 @@ function HistoryBooking() {
                                             <td>{item.pricePitch}</td>
                                             <td>{item.otherService.totalPriceOtherService}</td>
                                             <td>{item.totalPriceIncludeService}</td>
-                                            <td>{Paid}</td>
+                                            <td>{item.status}</td>
+                                            {item.status == 'Waiting' ? <td>
+                                                <a onClick={() => { handleDelete(item.bookingId) }} className="table-link danger">
+                                                    <span className="fa-stack">
+                                                        <i className="fa fa-square fa-stack-2x" />
+                                                        <i className="fa fa-trash-o fa-stack-1x fa-inverse" />
+                                                    </span>
+                                                </a>
+                                                <a onClick={() => {  }} className="table-link">
+                                                    <span className="fa-stack">
+                                                        <i className="fa fa-square fa-stack-2x" />
+                                                        <i className="fa fa-pencil fa-stack-1x fa-inverse" />
+                                                    </span>
+                                                </a>
+                                            </td>
+                                                : <td></td>}
+
                                         </tr>)
                                     }
                                     )}
@@ -110,7 +142,7 @@ function HistoryBooking() {
                 </div>
             </div>
 
-
+        </div>
 
         </>)
 }
