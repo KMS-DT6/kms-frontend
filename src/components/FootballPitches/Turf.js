@@ -62,7 +62,7 @@ function Turf() {
               <div className="col-md-6">
                   <label className="form-label">Dịch vụ</label>
                   <select onChange={(e) => setService(e.target.value)} className="form-select">
-                    <option value='0'>Không</option>
+                    <option value='0'>No</option>
                       <option value = '2'>Bóng sân 7</option>
                       <option value ='6'>Áo đấu</option>
                   </select>
