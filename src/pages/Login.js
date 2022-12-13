@@ -101,7 +101,7 @@ const LoginCSS = styled.div`
 
   .buttonN {
     display: flex;
-    margin-left: 23%;
+    // margin-left: 23%;
   }
   button {
     margin-right: 5px;

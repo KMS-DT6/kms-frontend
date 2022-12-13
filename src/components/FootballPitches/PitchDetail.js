@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import styled from "styled-components";
 
 function PitchDetail() {
@@ -9,8 +10,11 @@ function PitchDetail() {
     fetchData();
   }, [])
 
+  const id = useParams()
+
   const fetchData = async () => {
-    const url = 'http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/sub-football-pitches?footballPitchId=4'
+    const url = `http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/sub-football-pitches?footballPitchId=${id.id}`
+    console.log(url)
     const response = await axios.get(url,{ headers: {"Authorization" : `Bearer ${sessionStorage.getItem('token')}`}})
     console.log(response?.data?.data?.items)
     setTurfes(response?.data?.data?.items)
@@ -50,35 +54,25 @@ function PitchDetail() {
                     <td>
                       {turf?.size}
                     </td>
-                    <td style={{ width: '10%' }}>{turf?.status}</td>
-                    {/* {(() => {
-                          switch (car?.status.name) {
-                            case 'Đang hoạt động':
-                                                            return (
-                                                                <td className="text-center">
-                                                                    <span className="label label-success">{car?.status.name}</span>
-                                                                </td>
-                                                            )
-                                                        case 'Đã bị từ chối':
-                                                            return (
-                                                                <td className="text-center">
-                                                                    <span className="label label-denied">{car?.status.name}</span>
-                                                                </td>
-                                                            )
-                                                        case 'Đang chờ duyệt':
-                                                            return (
-                                                                <td className="text-center">
-                                                                    <span className="label label-warning">{car?.status.name}</span>
-                                                                </td>
-                                                            )
-                                                        default:
-                                                            return (
-                                                                <td className="text-center">
-                                                                    <span className="label label-active">{car?.status.name}</span>
-                                                                </td>
-                                                            )
-                                                    }
-                                                })()} */}
+                    {/* <td style={{ width: '10%' }}>
+                      {turf?.status? <p>Hết</p> : <p>Còn</p>}
+                      </td> */}
+                    {(() => {
+                      switch (turf?.status) {
+                        case true:
+                          return (
+                            <td className="text-center">
+                              <span className="label label-success">Còn</span>
+                            </td>
+                          )
+                        default:
+                          return (
+                            <td className="text-center">
+                              <span className="label label-denied">Hết</span>
+                            </td>
+                          )
+                      }
+                    })()}
                     <td>
                       {turf?.pricePerHour}
                     </td>
@@ -111,6 +105,11 @@ const PitchDetailCSS = styled.div`
 // margin-left:240px;
 // margin-top:-270px;
 // background-color:red;
+font-size: 15px;
+.container {
+  margin-left: 20px;
+  width: 98%;
+}
 .spanHe {
   text-align: center;
   font-size: xxx-large;
