@@ -29,7 +29,7 @@ function PitchDetail() {
             
           
             <div className="row">
-            <span className='spanHe'>Các sân con thuộc sân abc</span>
+            <span className='spanHe'>Danh sách sân con</span>
               <div className="col-lg-12">
                 <div className="main-box clearfix">
                   <div className="table-responsive">
@@ -59,7 +59,7 @@ function PitchDetail() {
                       </td> */}
                     {(() => {
                       switch (turf?.status) {
-                        case true:
+                        case false:
                           return (
                             <td className="text-center">
                               <span className="label label-success">Còn</span>

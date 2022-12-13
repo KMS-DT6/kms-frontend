@@ -17,7 +17,7 @@ function HistoryBooking() {
             footballPitchName: name,
             fromDate: startdate,
             toDate: enddate,
-            status: true,
+            status: false,
             isPaid: isPaid
         }
         console.log(ValueSubmit);
