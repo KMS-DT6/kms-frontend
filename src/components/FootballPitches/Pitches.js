@@ -26,16 +26,16 @@ console.log(pitches)
           <div className="container">
           
             <div className="row">
-            <span className='spanHe'>Danh sách sân bóng :</span>
+            <span className='spanHe'>Football pitch list :</span>
               <div className="col-lg-12">
                 <div className="main-box clearfix">
                   <div className="table-responsive">
                     <table className="table user-list">
                       <thead>
                         <tr>
-                          <th><span>Tên sân</span></th>
-                          <th><span>Địa chỉ</span></th>
-                          <th><span>Liên hệ</span></th>
+                          <th><span>Name</span></th>
+                          <th><span>Address</span></th>
+                          <th><span>Contact</span></th>
                           <th>&nbsp;</th>
                         </tr>
                       </thead>
