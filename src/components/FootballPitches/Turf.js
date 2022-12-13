@@ -5,7 +5,7 @@ function Turf() {
   return (
     <TurfCSS>
           <form className="row">
-            <span>Booking saan a</span>
+            <span>Booking sân a</span>
             <div className="col-md-6">
                   <label className="form-label">Khung giờ</label>
                   <select name id className="form-select">

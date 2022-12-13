@@ -12,6 +12,7 @@ function MyProfile() {
   const [district, setDistrict] = useState("");
   const [city, setCity] = useState("");
 
+  const [curentPass, setCurrentPass] = useState("")
   const [newPass, setNewPass] = useState("");
   const [cfNewPass, setCfNewPass] = useState("");
 
@@ -42,7 +43,7 @@ function MyProfile() {
     const data = {
       firstName: firstname,
       lastName: lastname,
-      username: "admin",
+      username: user?.username,
       phoneNumber: phonenumber,
       address: address,
       district: "Lien Chieu",
@@ -61,19 +62,25 @@ function MyProfile() {
 
   const changePass = async () => {
     const data = {
-      currentPassword: user?.password,
+      currentPassword: curentPass,
       newPassword: newPass,
       confirmPassword: cfNewPass,
     };
     console.log(data);
-    // await axios.put('http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/my-account/change-password',data,{ headers: {"Authorization" : `Bearer ${sessionStorage.getItem('token')}`}})
-    // window.location.reload()
+    await axios.put(
+      "http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/my-account/change-password",
+      data,
+      {
+        headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` },
+      }
+    );
+    window.location.reload();
   };
 
   return (
     <MyProfileCSS>
       <div onLoad={fetchD}>
-        <h1 className="text-primary text-center">Profile Settings</h1>
+        <h1 className="text-primary text-center">Profile infomation</h1>
         <br />
         <br />
 
@@ -94,8 +101,8 @@ function MyProfile() {
 
             <div className="col-md-9 personal-info">
               <form className="form-horizontal" role="form">
-                <div className="nameLabel">
-                  <div className="form-group fn">
+                {/* <div className="nameLabel"> */}
+                  {/* <div className="form-group fn">
                     <label className="">First name:</label>
                     <div className="col-lg-8">
                       <input
@@ -105,8 +112,8 @@ function MyProfile() {
                         defaultValue={user?.firstName}
                       />
                     </div>
-                  </div>
-                  <div className="form-group ln">
+                  </div> */}
+                  {/* <div className="form-group">
                     <label className="">Last name:</label>
                     <div className="col-lg-8">
                       <input
@@ -116,6 +123,29 @@ function MyProfile() {
                         defaultValue={user?.lastName}
                       />
                     </div>
+                  </div> */}
+                {/* </div> */}
+                <span>Change infomation</span>
+                <div className="form-group">
+                  <label className="col-lg-3 control-label">First name:</label>
+                  <div className="col-lg-8">
+                    <input
+                      className="form-control"
+                      type="text"
+                      onChange={(e) => setFirstName(e.target.value)}
+                      defaultValue={user?.firstName}
+                    />
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label className="col-lg-3 control-label">Last name:</label>
+                  <div className="col-lg-8">
+                    <input
+                      className="form-control"
+                      type="text"
+                      onChange={(e) => setLastName(e.target.value)}
+                      defaultValue={user?.lastName}
+                    />
                   </div>
                 </div>
                 <div className="form-group">
@@ -140,6 +170,22 @@ function MyProfile() {
                     />
                   </div>
                 </div>
+                <br/>
+                <br/>
+
+                <span>Change password</span>
+                <div className="form-group">
+                  <label className="col-lg-3 control-label">
+                    Current Password:
+                  </label>
+                  <div className="col-lg-8">
+                    <input
+                      className="form-control"
+                      type="password"
+                      onChange={(e) => setCurrentPass(e.target.value)}
+                    />
+                  </div>
+                </div>
                 <div className="form-group">
                   <label className="col-lg-3 control-label">
                     New Password:
@@ -149,7 +195,6 @@ function MyProfile() {
                       className="form-control"
                       type="password"
                       onChange={(e) => setNewPass(e.target.value)}
-                      defaultValue="0123456"
                     />
                   </div>
                 </div>
@@ -162,7 +207,6 @@ function MyProfile() {
                       className="form-control"
                       type="password"
                       onChange={(e) => setCfNewPass(e.target.value)}
-                      defaultValue="0123456"
                     />
                   </div>
                 </div>
@@ -190,7 +234,7 @@ function MyProfile() {
                 >
                   Save
                 </button>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                
                 <button
                   type="button"
                   className="btn btn-success btn-block"
@@ -211,11 +255,18 @@ function MyProfile() {
 export default MyProfile;
 
 const MyProfileCSS = styled.div`
+  span {
+    font-size : 30px;
+  }
   input {
     margin-top: 5px;
   }
+  label {
+    margin-top :20px;
+  }
   button {
     margin-top: 10px;
+    margin-right: 174px;
   }
   margin-left: 240px;
   body {
