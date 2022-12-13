@@ -104,12 +104,14 @@ const FootballPitchDetail = () => {
     console.log(res);
   };
   const handleDelete = async (id) => {
-    const res = await axios.delete(
-      `http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/football-pitch-admins/${id}`
-    );
-    console.log(res);
-    setlistaccount(listaccount.filter((item) => item.id !== id));
-    //window.location.reload();
+    if (window.confirm("Are you want to delete?")) {
+      const res = await axios.delete(
+        `http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/football-pitch-admins/${id}`
+      );
+      console.log(res);
+      setlistaccount(listaccount.filter((item) => item.id !== id));
+      //window.location.reload();
+    }
   };
   const getaccount = async (id) => {
     const res = await axios.get(
@@ -178,8 +180,9 @@ const FootballPitchDetail = () => {
         }
       );
       console.log(res);
-      setVisible(false);
     }
+    setVisible(false);
+    window.alert("Success.");
   };
   return (
     <>

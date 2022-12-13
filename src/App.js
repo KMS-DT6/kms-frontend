@@ -30,11 +30,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/schedule" element={<HomePage />} /> */}
+        <Route path="/" element={<HomePage />} />
         <Route path="/pitch/:id" element={<PitchDetailPage />} />
         <Route path="/list-sub-pitch" element={<ListSubFootballPitchPage />} />
         <Route path="/turf/:id" element={<TurfPage />} />
-        <Route path="/" element={<PitchPage />} />
+        {/* <Route path="/" element={<PitchPage />} /> */}
         {/* <Route path="/" element={<Login />} /> */}
         <Route path="/pitch" element={<PitchPage />} />
         <Route path="/login" element={<Login />} />

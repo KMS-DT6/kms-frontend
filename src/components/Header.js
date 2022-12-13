@@ -6,15 +6,17 @@ import styled from 'styled-components'
 
 function Header() {
   const [token, setToken] = useState("token");
+  const navigate = useNavigate()
   const handleLogout = () => {
     sessionStorage.removeItem('token')
-    // Navigate("/")
+    navigate("/")
+    window.location.reload()
   }
   return (
     <Navigation>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <a href="#" className="navbar-brand">
+          <a href="/" className="navbar-brand">
             Football turf management
           </a>
           <button
@@ -50,7 +52,7 @@ function Header() {
                     return (
                       <div className='btnHandle'>
                         <BiLogOut className='icon'/>
-                        <Link to="/login" onClick={handleLogout} className="nav-item nav-link" ><h5>Logout</h5></Link>
+                        <a onClick={handleLogout} className="nav-item nav-link" ><h5>Logout</h5></a>
                       </div>
                     )
                 }
