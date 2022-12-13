@@ -47,13 +47,15 @@ export const PaginationTable = () => {
   const [listdistrict, setlistdistrict] = useState([]);
 
   const handleDelete = async (id) => {
-    const res = await axios.delete(
-      `http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/football-pitches/${id}`
-    );
-    //console.log(res);
-    setlistPitch(listPitch.filter((item) => item.footballPitchId !== id));
-    //window.location.reload();
-    setVisible(true);
+    if (window.confirm("Are you want to delete?")) {
+      const res = await axios.delete(
+        `http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/football-pitches/${id}`
+      );
+      //console.log(res);
+      setlistPitch(listPitch.filter((item) => item.footballPitchId !== id));
+      //window.location.reload();
+      //setVisible(true);
+    }
   };
   const handleCreate = async () => {
     const res = await axios.post(
@@ -83,7 +85,7 @@ export const PaginationTable = () => {
       },
     ]);
     setVisible(false);
-    window.alert("Thành công.");
+    window.alert("Done.");
   };
 
   useEffect(() => {
@@ -312,29 +314,48 @@ export const PaginationTable = () => {
           </tbody>
         </table>
         <div>
-          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          {/* <button
+            className="btn"
+            style={{ width: "30px" }}
+            onClick={() => gotoPage(0)}
+            disabled={!canPreviousPage}
+          >
             {"<<"}
-          </button>{" "}
-          <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-            Previous
-          </button>{" "}
-          <button onClick={() => nextPage()} disabled={!canNextPage}>
-            Next
-          </button>{" "}
+          </button>
+
           <button
-            onClick={() => gotoPage(pageCount - 1)}
+            className="btn"
+            onClick={() => previousPage()}
+            disabled={!canPreviousPage}
+          >
+            Previous
+          </button>
+
+          <button
+            className="btn"
+            onClick={() => nextPage()}
             disabled={!canNextPage}
           >
-            {">>"}
-          </button>{" "}
+            Next
+          </button>
+
           <span>
-            Page{" "}
+            <button
+              className="btn"
+              onClick={() => gotoPage(pageCount - 1)}
+              disabled={!canNextPage}
+            >
+              {">>"}
+            </button>
+          </span> */}
+          <span>
+            Page
             <strong>
               {pageIndex + 1} / {pageOptions.length}
-            </strong>{" "}
+            </strong>
           </span>
           <span>
-            | Go to page:{" "}
+            | Go to page:
             <input
               type="number"
               defaultValue={pageIndex + 1}
@@ -346,7 +367,7 @@ export const PaginationTable = () => {
               }}
               style={{ width: "50px" }}
             />
-          </span>{" "}
+          </span>
           <select
             value={pageSize}
             onChange={(e) => setPageSize(Number(e.target.value))}

@@ -1,5 +1,9 @@
 import React from "react";
-import { AppContent, AppHeader } from "../../components/Admin/index";
+import {
+  AppContent,
+  AppHeader,
+  AppSidebar,
+} from "../../components/Admin/index";
 
 const AdminPage = () => {
   return (
@@ -21,7 +25,7 @@ const AdminPage = () => {
         href="https://fonts.googleapis.com/css?family=Roboto"
       ></link>
       {/* <AppSidebar /> */}
-      <div className="wrapper d-flex flex-column min-vh-100 bg-light">
+      <div className="">
         <AppHeader />
         <div className="body flex-grow-1 px-2">
           <AppContent />

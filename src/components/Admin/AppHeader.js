@@ -34,9 +34,7 @@ const AppHeader = () => {
         <CHeaderBrand className="mx-auto d-md-none" to="/"></CHeaderBrand>
         <CHeaderNav className="d-none d-md-flex me-auto">
           <CNavItem>
-            <CNavLink to="#" component={NavLink}>
-              <b>FOOTBALL TURF MANAGEMENT</b>
-            </CNavLink>
+            <CNavLink to="#" component={NavLink}></CNavLink>
           </CNavItem>
           {/* <CNavItem>
             <CNavLink href="/theme/color">Users</CNavLink>
