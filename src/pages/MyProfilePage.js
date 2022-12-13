@@ -1,18 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
-import Pitches from '../components/FootballPitches/Pitches'
-import Turf from '../components/FootballPitches/Turf'
 import Header from '../components/Header'
+import HeaderManage from '../components/HeaderManage'
 import Menu from '../components/Menu'
 import MyProfile from '../components/User/MyProfile'
+import MenuManage from '../components/MenuManage'
+import jwt_decode from 'jwt-decode'
 
 function MyProfilePage() {
+  var menu, header;
+  const role = jwt_decode(sessionStorage.getItem("token")).roles[0];
+  if (role == "FOOTBALL_PITCH") {
+    menu = <MenuManage />
+    header= <HeaderManage/>
+  } 
+  else if (role == "CUSTOMER") {
+    menu = <Menu />
+    header= <Header/>
+  }
   return (
     <MyProfilePageCSS>
         <div className='tt'>
-            <Header />
+            {header}
             <div className="flext">
-                <Menu />
+                {menu}
                 <div className='dash'>
                   <MyProfile />
                 </div>

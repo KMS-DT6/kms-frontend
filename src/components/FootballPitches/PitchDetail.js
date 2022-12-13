@@ -1,7 +1,25 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import styled from "styled-components";
 
 function PitchDetail() {
+  const [turfes, setTurfes] = useState([])
+  
+  useEffect(() => {
+    fetchData();
+  }, [])
+
+  const id = useParams()
+
+  const fetchData = async () => {
+    const url = `http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/sub-football-pitches?footballPitchId=${id.id}`
+    console.log(url)
+    const response = await axios.get(url,{ headers: {"Authorization" : `Bearer ${sessionStorage.getItem('token')}`}})
+    console.log(response?.data?.data?.items)
+    setTurfes(response?.data?.data?.items)
+
+}
   return (
     <PitchDetailCSS>
         
@@ -19,61 +37,56 @@ function PitchDetail() {
                       <thead>
                         <tr>
                           <th><span>Tên sân</span></th>
-                          <th><span>Loại</span></th>
+                          <th><span>Size</span></th>
                           <th className="text-center"><span>Tình trạng</span></th>
-                          <th><span>LH</span></th>
+                          <th><span>Giá theo giờ</span></th>
                           <th>&nbsp;</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>
-                            <img src="https://thegioiconhantao.com.vn/wp-content/uploads/2016/11/phat-den.png" alt />
-                            <a href="" className="user-link">Sân A1</a>
-                            <span className="user-subhead">Admin</span>
-                          </td>
-                          <td>
-                            Sân 5
-                          </td>
-                          <td className="text-center">
-                            <span className="label label-success">Còn trống</span>
-                          </td>
-                          <td>
-                            <a href="#">spencer@tracy</a>
-                          </td>
-                          <td style={{ width: '10%' }}>
-                            <a href="#" className="table-link">
-                              <span className="fa-stack">
-                                <i className="fa fa-square fa-stack-2x" />
-                                <i className="fa fa-plus fa-stack-1x fa-inverse" />
-                              </span>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="https://giaydabongtot.com/wp-content/uploads/2020/04/Kich-thuoc-dien-tich-san-bong-da-7-nguoi-tieu-chuan.jpg" alt />
-                            <a href="" className="user-link">Sân A2</a>
-                            <span className="user-subhead">Admin</span>
-                          </td>
-                          <td>
-                            Sân 7
-                          </td>
-                          <td className="text-center">
-                            <span className="label label-success">Còn trống</span>
-                          </td>
-                          <td>
-                            <a href="#">blo</a>
-                          </td>
-                          <td style={{ width: '10%' }}>
-                            <a href="/turf/id" className="table-link">
-                              <span className="fa-stack">
-                                <i className="fa fa-square fa-stack-2x" />
-                                <i className="fa fa-plus fa-stack-1x fa-inverse" />
-                              </span>
-                            </a>
-                          </td>
-                        </tr>
+                      {
+                turfes?.map((turf, index) => (
+                  <tr key={index}>
+                    <td>
+                      <img src={turf?.image} />
+                      {turf?.subFootballPitchName}
+                    </td>
+                    <td>
+                      {turf?.size}
+                    </td>
+                    {/* <td style={{ width: '10%' }}>
+                      {turf?.status? <p>Hết</p> : <p>Còn</p>}
+                      </td> */}
+                    {(() => {
+                      switch (turf?.status) {
+                        case true:
+                          return (
+                            <td className="text-center">
+                              <span className="label label-success">Còn</span>
+                            </td>
+                          )
+                        default:
+                          return (
+                            <td className="text-center">
+                              <span className="label label-denied">Hết</span>
+                            </td>
+                          )
+                      }
+                    })()}
+                    <td>
+                      {turf?.pricePerHour}
+                    </td>
+                    <td style={{ width: '10%' }}>
+                      <a href={`/turf/${turf?.subFootballPitchId}`} className="table-link">
+                        <span className="fa-stack">
+                          <i className="fa fa-square fa-stack-2x" />
+                          <i className="fa fa-plus fa-stack-1x fa-inverse" />
+                        </span>
+                      </a>
+                    </td>
+                  </tr>
+                ))
+              }
                       </tbody>
                     </table>
                   </div>
@@ -92,6 +105,11 @@ const PitchDetailCSS = styled.div`
 // margin-left:240px;
 // margin-top:-270px;
 // background-color:red;
+font-size: 15px;
+.container {
+  margin-left: 20px;
+  width: 98%;
+}
 .spanHe {
   text-align: center;
   font-size: xxx-large;

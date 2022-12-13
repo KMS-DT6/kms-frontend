@@ -21,6 +21,7 @@ function Login() {
       "http://kmsbackend-env.eba-vjukkhfp.us-east-1.elasticbeanstalk.com/api/login",
       user
     );
+    console.log( response?.data?.access_token)
     sessionStorage.setItem("token", response?.data?.access_token);
     //console.log(sessionStorage.getItem("token"));
     //console.log(jwt_decode(sessionStorage.getItem("token")).roles[0]);
@@ -30,10 +31,10 @@ function Login() {
     if (
       jwt_decode(sessionStorage.getItem("token")).roles[0] === "FOOTBALL_PITCH"
     ) {
-      navigate("/");
+      navigate("/manage");
     }
     if (jwt_decode(sessionStorage.getItem("token")).roles[0] === "CUSTOMER") {
-      navigate("/");
+      navigate("/pitch");
     }
   }
   return (
@@ -100,7 +101,7 @@ const LoginCSS = styled.div`
 
   .buttonN {
     display: flex;
-    margin-left: 23%;
+    // margin-left: 23%;
   }
   button {
     margin-right: 5px;

@@ -1,28 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
-import ListSubFootballPitch from '../../components/SubFootballPitch/ListSubFootballPitch'
+import ListOtherService from '../../components/OtherService/ListOtherService'
 import HeaderManage from '../../components/HeaderManage'
-import MenuManage from '../../components/MenuManage'
+import Menu from '../../components/MenuManage'
 
-function ListSubFootballPitchPage() {
+
+function ListOtherServicePage() {
   return (
-    <ListSubFootballPitchCSS>
+    <ListOtherServiceCSS>
         <div className='tt'>
             <HeaderManage />
             <div className="flext">
-                <MenuManage />
+                <Menu />
                 <div className='dash'>
-                  <ListSubFootballPitch />
+                  <ListOtherService />
                 </div>
             </div>
         </div>
-    </ListSubFootballPitchCSS>
+    </ListOtherServiceCSS>
   )
 }
 
-export default ListSubFootballPitchPage
+export default ListOtherServicePage
 
-const ListSubFootballPitchCSS = styled.div`
+const ListOtherServiceCSS = styled.div`
 // background-color : yellow;
 .flext {
   display:flex;

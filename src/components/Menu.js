@@ -14,12 +14,12 @@ function Menu() {
     <MenuCSS>
       <nav
         id="sidebarMenu"
-        className="collapse d-lg-block sidebar collapse bg-white"
+        className="slideBar"
       >
         <div className="position-sticky">
-          <div className="list-group list-group-flush mx-3 mt-4">
+          <div className="list-group list-group-flush">
             <a
-              href="/"
+              href="/pitch"
               className="list-group-item list-group-item-dark py-2 ripple"
               aria-current="true"
             >
@@ -33,12 +33,19 @@ function Menu() {
               <i className="fas fa-chart-area fa-fw me-3" />
               <span>Pitch</span>
             </a>
-            <a
-              href="/football-pitch-admin"
+            {/* <a
+              href="/schedule"
               className="list-group-item list-group-item-dark py-2 ripple"
             >
               <i className="fas fa-chart-area fa-fw me-3" />
-              <span>Manage Pitch</span>
+              <span>My Schedule</span>
+            </a> */}
+            <a
+              href="/historybooking"
+              className="list-group-item list-group-item-dark py-2 ripple"
+            >
+              <i className="fas fa-chart-area fa-fw me-3" />
+              <span>History Booking</span>
             </a>
           </div>
         </div>
@@ -50,7 +57,14 @@ export default Menu;
 
 const MenuCSS = styled.div`
   width: 240px;
-  height: 100%;
+  height: 100px;
 //   background-color:white;
 //   text-color:black;
+  span {
+    color : black;
+    font-size:15px;
+  }
+  .slideBar{
+
+  }
 `;
