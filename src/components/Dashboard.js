@@ -13,7 +13,7 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 function Dashboard() {
     return (
         <DashboardCSS>
-        <div>
+        {/* <div>
           <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
           <div className="container">
             <div className="row">
@@ -83,7 +83,26 @@ function Dashboard() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
+        <section id="hero" className="hero">
+          <div className="container text-center">
+            <div className="row">
+              <div className="col-md-12">
+                <a className="hero-brand" href="index.html" title="Home"><img alt="Bell Logo" src="assets/img/logo.png" /></a>
+              </div>
+            </div>
+            <div className="col-md-12">
+              <h1>
+                A theme with personality
+              </h1>
+              <p className="tagline">
+                This is a powerful theme with some great features that you can use in your future projects.
+              </p>
+              <a className="btn btn-full scrollto" href="#about">Get Started Now</a>
+            </div>
+          </div>
+        </section>
+
 
         </DashboardCSS>
     )
@@ -92,6 +111,11 @@ function Dashboard() {
 export default Dashboard
 
 const DashboardCSS = styled.div`
+display: flex;
+span {
+  font-size: 30px;
+
+}
 // margin-left:240px;
 // margin-top:-270px;
 // background-color:red;

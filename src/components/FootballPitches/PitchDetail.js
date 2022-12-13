@@ -29,17 +29,17 @@ function PitchDetail() {
             
           
             <div className="row">
-            <span className='spanHe'>Danh sách sân con</span>
+            <span className='spanHe'>Sub football pitch list :</span>
               <div className="col-lg-12">
                 <div className="main-box clearfix">
                   <div className="table-responsive">
                     <table className="table user-list">
                       <thead>
                         <tr>
-                          <th><span>Tên sân</span></th>
+                          <th><span>Name</span></th>
                           <th><span>Size</span></th>
-                          <th className="text-center"><span>Tình trạng</span></th>
-                          <th><span>Giá theo giờ</span></th>
+                          <th className="text-center"><span>Status</span></th>
+                          <th><span>Price per hour</span></th>
                           <th>&nbsp;</th>
                         </tr>
                       </thead>

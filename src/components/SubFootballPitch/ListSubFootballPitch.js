@@ -220,13 +220,13 @@ function ListSubFootballPitch() {
                 <tbody><tr>
                     
                     <td>
-                        <b>Tên sân </b>
+                        <b>Name </b>
                         <input type="text" className='textname' onChange={e =>{setname(e.target.value)}} />
                     </td>
                     <td>
                         <div className="form-check form-switch">
                             <input className="form-check-input"  type="checkbox" id="flexSwitchCheckDefault"  defaultChecked={status} onChange={()=>{setstatus(!status)}}/>
-                            <label className="form-check-label" htmlFor="flexSwitchCheckDefault"><b>Trạng thái</b></label>
+                            <label className="form-check-label" htmlFor="flexSwitchCheckDefault"><b>Status</b></label>
                         </div>
 
                     </td>
@@ -237,10 +237,10 @@ function ListSubFootballPitch() {
           <table className="table user-list">
             <thead>
               <tr>
-                <th><span>Tên sân</span></th>
-                <th><span>Loại</span></th>
-                <th><span>Tình trạng</span></th>
-                <th><span>Giá</span></th>
+                <th><span>Name</span></th>
+                <th><span>Size</span></th>
+                <th><span>Status</span></th>
+                <th><span>Price</span></th>
 
                 <th>
                   <a onClick={(e) => {setIdSubFootballPitch(null); setValueSubFootballPitch(null);setVisible(true) }} className="btn btn-primary" type="button">

@@ -7,9 +7,10 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Header from '../components/Header';
 import Dashboard from '../components/Dashboard';
 import Schedule from '../components/User/Schedule';
+import Pitches from '../components/FootballPitches/Pitches';
 
 function HomePage() {
-    const account = 'd'
+  if(sessionStorage.getItem('token')){
   return (
     <HomePageCSS>
         <div className='tt'>
@@ -17,8 +18,22 @@ function HomePage() {
             <div className="flext">
                 <Menu />
                 <div className='dash'>
+                  <Pitches />
+                </div>
+            </div>
+        </div>
+    </HomePageCSS>
+  )}
+  else 
+  return (
+    <HomePageCSS>
+        <div className='tt'>
+            <Header />
+            <div className="flext">
+                <Menu />
+                <div className='dash'>
+                <Pitches />
                   {/* <Dashboard /> */}
-                  <Schedule />
                 </div>
             </div>
         </div>

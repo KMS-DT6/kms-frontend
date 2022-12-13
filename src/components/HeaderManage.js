@@ -6,6 +6,12 @@ import styled from 'styled-components'
 
 function Header() {
   const [token, setToken] = useState("token");
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    sessionStorage.removeItem('token')
+    navigate("/")
+    window.location.reload()
+  }
   return (
     <Navigation>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -31,10 +37,24 @@ function Header() {
               </a>
             </div>
             <div class="navbar-nav ms-auto">
-                <BiLogIn className='icon'/>
-                <Link to="/login" class="nav-item nav-link"><h5>Login</h5></Link>
-                <BiLogOut className='icon'/>
-                <Link to="/" class="nav-item nav-link"><h5>Logout</h5></Link>
+            {(() => {
+                switch (sessionStorage.getItem('token')) {
+                  case null:
+                    return (
+                      <div className='btnHandle'>
+                        {/* <BiLogIn className='icon'/> */}
+                        <Link to="/login" className="nav-item nav-link"><h5>Login</h5></Link>
+                      </div>
+                    )
+                  default:
+                    return (
+                      <div className='btnHandle'>
+                        {/* <BiLogOut className='icon'/> */}
+                        <a onClick={handleLogout} className="nav-item nav-link" ><h5>Logout</h5></a>
+                      </div>
+                    )
+                }
+              })()}
             </div>
           </div>
         </div>
